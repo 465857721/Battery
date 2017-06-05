@@ -125,7 +125,7 @@
         </meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="AS"/>
+            android:value="AS360"/>
     </application>
 
 </manifest>
