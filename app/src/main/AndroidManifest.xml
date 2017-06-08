@@ -86,7 +86,7 @@
         </activity>
 
         <service
-            android:name=".BackService"
+            android:name="com.king.batterytest.BackService"
             android:enabled="true"/>
 
         <receiver android:name=".BootCompletedReceiver">
@@ -127,9 +127,8 @@
             android:value="AS360"/>
 
         <activity
-            android:name=".HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme">
+            android:name="com.king.batterytest.HomeActivity"
+            android:label="@string/title_activity_home">
         </activity>
     </application>
 

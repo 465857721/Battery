@@ -177,7 +177,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent i = new Intent(MainActivity.this, AboutActivity.class);
+                Intent i = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(i);
                 // overridePendingTransition(R.anim.left_in, R.anim.left_out);
             }
