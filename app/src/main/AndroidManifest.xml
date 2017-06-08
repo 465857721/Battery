@@ -127,8 +127,8 @@
             android:value="AS360"/>
 
         <activity
-            android:name="com.king.batterytest.HomeActivity"
-            android:label="@string/title_activity_home">
+            android:label=""
+            android:name="com.king.batterytest.HomeActivity">
         </activity>
     </application>
 
