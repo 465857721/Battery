@@ -2,6 +2,7 @@ package com.king.batterytest;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.FitWindowsViewGroup;
 
 import com.jaeger.library.StatusBarUtil;
 import com.umeng.analytics.MobclickAgent;

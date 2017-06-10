@@ -23,7 +23,6 @@ public class AboutActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about);
         context = this;
-//		UMFeedbackService.openUmengFeedbackSDK(this);
         btn_share = (Button) findViewById(R.id.btn_share);
         btn_share.setOnClickListener(new OnClickListener() {
 
@@ -63,18 +62,5 @@ public class AboutActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        // TODO Auto-generated method stub
-        super.onResume();
-//		MobclickAgent.onResume(this);
-    }
-
-    @Override
-    protected void onPause() {
-        // TODO Auto-generated method stub
-        super.onPause();
-//		MobclickAgent.onPause(this);
-    }
 
 }
