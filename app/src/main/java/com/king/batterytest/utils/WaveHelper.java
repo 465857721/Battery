@@ -1,4 +1,4 @@
-package com.king.batterytest;
+package com.king.batterytest.utils;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -17,6 +17,7 @@ public class WaveHelper {
 
     private AnimatorSet mAnimatorSet;
     private long time = 5000;//默认上涨 时间
+
     public WaveHelper(WaveView waveView) {
         mWaveView = waveView;
 
@@ -28,20 +29,21 @@ public class WaveHelper {
         if (mAnimatorSet != null) {
             cancel();
         }
-        initAnimation(LevelRatio,time);
+        initAnimation(LevelRatio, time);
         mAnimatorSet.start();
     }
+
     public void setLevelRatio(float LevelRatio) {
         mWaveView.setShowWave(true);
 
         if (mAnimatorSet != null) {
             cancel();
         }
-        initAnimation(LevelRatio,0);
+        initAnimation(LevelRatio, 0);
         mAnimatorSet.start();
     }
 
-    private void initAnimation(float LevelRatio,long time) {
+    private void initAnimation(float LevelRatio, long time) {
         List<Animator> animators = new ArrayList<>();
 
         // horizontal animation.
@@ -59,7 +61,6 @@ public class WaveHelper {
                 mWaveView, "waterLevelRatio", 0f, LevelRatio);
         waterLevelAnim.setDuration(time);
         waterLevelAnim.setInterpolator(new DecelerateInterpolator());
-
         animators.add(waterLevelAnim);
 
         // amplitude animation.
@@ -80,7 +81,6 @@ public class WaveHelper {
     public void cancel() {
         if (mAnimatorSet != null) {
 //            mAnimatorSet.cancel();
-
             mAnimatorSet.end();
         }
     }

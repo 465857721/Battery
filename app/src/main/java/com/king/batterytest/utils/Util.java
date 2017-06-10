@@ -1,4 +1,4 @@
-package com.king.batterytest;
+package com.king.batterytest.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;

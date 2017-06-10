@@ -1,4 +1,4 @@
-package com.king.batterytest;
+package com.king.batterytest.about;
 
 
 import android.app.AlertDialog;
@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
+import com.king.batterytest.R;
+import com.king.batterytest.main.BaseActivity;
 
 
 public class AboutActivity extends BaseActivity {

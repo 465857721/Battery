@@ -1,5 +1,6 @@
-package com.king.batterytest;
+package com.king.batterytest.home;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -7,7 +8,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,13 +15,22 @@ import android.widget.TextView;
 
 import com.gelitenight.waveview.library.WaveView;
 import com.jaeger.library.StatusBarUtil;
+import com.king.batterytest.R;
+import com.king.batterytest.main.BaseActivity;
+import com.king.batterytest.main.event.BatteryInfoEvent;
+import com.king.batterytest.service.BackService;
+import com.king.batterytest.utils.WaveHelper;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class HomeActivity extends AppCompatActivity
+public class HomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Bind(R.id.toolbar)
@@ -30,6 +39,8 @@ public class HomeActivity extends AppCompatActivity
     NavigationView navigationView;
     @Bind(R.id.drawer_layout2)
     DrawerLayout drawer;
+    @Bind(R.id.tv_leave)
+    TextView tvLeave;
 
     private WaveHelper mWaveHelper;
     private WaveView waveView;
@@ -40,8 +51,11 @@ public class HomeActivity extends AppCompatActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        EventBus.getDefault().register(this);
+        startService();
         ButterKnife.bind(this);
         intiView();
+        mWaveHelper.start(spu.getNum() / 100);
     }
 
     @Override
@@ -114,9 +128,21 @@ public class HomeActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(BatteryInfoEvent event) {
+        mWaveHelper.setLevelRatio(event.getNum() / 100f);
+        tvLeave.setText(event.getNum() + "%");
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
-        mWaveHelper.start(0.5f);
+
     }
 
     @OnClick({R.id.ll_charge})
@@ -127,5 +153,13 @@ public class HomeActivity extends AppCompatActivity
                 break;
 
         }
+    }
+
+    private void startService() {
+//        editor.putInt("open", 0);// 0为开启
+//        editor.commit();
+
+        Intent i = new Intent(this, BackService.class);
+        startService(i);
     }
 }

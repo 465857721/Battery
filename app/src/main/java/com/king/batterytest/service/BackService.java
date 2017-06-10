@@ -1,4 +1,4 @@
-package com.king.batterytest;
+package com.king.batterytest.service;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -15,12 +15,20 @@ import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.king.batterytest.R;
+import com.king.batterytest.main.MainActivity;
+import com.king.batterytest.main.event.BatteryInfoEvent;
+import com.king.batterytest.utils.SharePreferenceUtil;
+import com.king.batterytest.utils.Tools;
+
+import org.greenrobot.eventbus.EventBus;
+
 import java.text.DecimalFormat;
 
 
 public class BackService extends Service {
     private Notification baseNF;
-
+    private SharePreferenceUtil spu;
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -28,7 +36,7 @@ public class BackService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
+        spu= Tools.getSpu(getApplicationContext());
         // 定义电池电量更新广播的过滤器,只接受带有ACTION_BATTERRY_CHANGED事件的Intent
         IntentFilter batteryChangedReceiverFilter = new IntentFilter();
         batteryChangedReceiverFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
@@ -85,7 +93,10 @@ public class BackService extends Service {
 //                .setAutoCancel(false)//设置这个标志当用户单击面板就可以让通知将自动取消
                 .setOngoing(true);//ture，设置他为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐)或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)
         int num = level * 100 / scale;
-//
+
+        spu.setNum(num);
+        EventBus.getDefault().post(new BatteryInfoEvent(num, BatteryV, BatteryT));
+
         Log.d("zk", "battery num = " + num);
         SharedPreferences prefs = getSharedPreferences("myapp", 0);// 默认值为0
         // ，0为关闭状态~

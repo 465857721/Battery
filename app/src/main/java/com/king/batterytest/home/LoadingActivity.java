@@ -1,9 +1,12 @@
-package com.king.batterytest;
+package com.king.batterytest.home;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
+
+import com.king.batterytest.R;
+import com.king.batterytest.main.BaseActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;

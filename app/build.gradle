@@ -31,5 +31,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.github.glomadrian:Grav:1.1'
     compile 'com.gelitenight.waveview:waveview:1.0.0'
-
+    compile 'org.greenrobot:eventbus:3.0.0'
 }

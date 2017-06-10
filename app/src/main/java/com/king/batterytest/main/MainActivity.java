@@ -1,17 +1,13 @@
-package com.king.batterytest;
+package com.king.batterytest.main;
 
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -20,7 +16,11 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Toast;
 
-import com.umeng.analytics.MobclickAgent;
+import com.king.batterytest.R;
+import com.king.batterytest.home.HomeActivity;
+import com.king.batterytest.service.BackService;
+
+import org.greenrobot.eventbus.EventBus;
 
 
 public class MainActivity extends BaseActivity {
@@ -183,7 +183,6 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        Util.showCommentDialog(this);
 
     }
 

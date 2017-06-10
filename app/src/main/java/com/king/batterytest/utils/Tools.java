@@ -1,4 +1,4 @@
-package com.king.batterytest;
+package com.king.batterytest.utils;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -15,6 +15,8 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.king.batterytest.R;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -28,6 +30,10 @@ public class Tools {
     private static Toast toast;
     private static Dialog loadingDialog;
 
+    public static SharePreferenceUtil getSpu(Context mContext) {
+        return new SharePreferenceUtil(mContext.getApplicationContext(), "battery");
+    }
+
     public static int getStatusBarHeight(Context mContext) {
         int resId = mContext.getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resId > 0) {
@@ -35,6 +41,7 @@ public class Tools {
         }
         return 0;
     }
+
     // 底部弹出Toast
     public static void toastInBottom(Context context, String msg) {
         if (context != null) {

@@ -1,20 +1,23 @@
-package com.king.batterytest;
+package com.king.batterytest.main;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.FitWindowsViewGroup;
 
 import com.jaeger.library.StatusBarUtil;
+import com.king.batterytest.R;
+import com.king.batterytest.utils.SharePreferenceUtil;
+import com.king.batterytest.utils.Tools;
 import com.umeng.analytics.MobclickAgent;
 
 
 public class BaseActivity extends AppCompatActivity {
-
+    public SharePreferenceUtil spu;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        spu = Tools.getSpu(this);
 
 //        // 需要设置 状态栏 颜色为 非白色否则 其他主题在 5.0以上无法使用。tagetsdk 必须在20以下，只能通过这这种方式来设置状态栏颜色
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

@@ -74,7 +74,7 @@
         android:theme="@style/AppTheme"
         tools:replace="icon,label,theme">
         <activity
-            android:name=".LoadingActivity"
+            android:name=".home.LoadingActivity"
             android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -82,19 +82,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:label="@string/title_activity_main">
         </activity>
         <activity
-            android:name=".AboutActivity"
+            android:name=".about.AboutActivity"
             android:label="@string/title_activity_main">
         </activity>
 
         <service
-            android:name="com.king.batterytest.BackService"
+            android:name="com.king.batterytest.service.BackService"
             android:enabled="true"/>
 
-        <receiver android:name=".BootCompletedReceiver">
+        <receiver android:name=".receiver.BootCompletedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.BATTERY_CHANGED"/>
@@ -132,7 +132,7 @@
             android:value="AS360"/>
 
         <activity
-            android:name="com.king.batterytest.HomeActivity">
+            android:name="com.king.batterytest.home.HomeActivity">
         </activity>
     </application>
 
