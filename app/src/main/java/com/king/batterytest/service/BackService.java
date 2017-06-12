@@ -29,6 +29,7 @@ import java.text.DecimalFormat;
 public class BackService extends Service {
     private Notification baseNF;
     private SharePreferenceUtil spu;
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -36,7 +37,7 @@ public class BackService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        spu= Tools.getSpu(getApplicationContext());
+        spu = Tools.getSpu(getApplicationContext());
         // 定义电池电量更新广播的过滤器,只接受带有ACTION_BATTERRY_CHANGED事件的Intent
         IntentFilter batteryChangedReceiverFilter = new IntentFilter();
         batteryChangedReceiverFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
@@ -94,7 +95,7 @@ public class BackService extends Service {
                 .setOngoing(true);//ture，设置他为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐)或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)
         int num = level * 100 / scale;
 
-        spu.setNum(num);
+
         EventBus.getDefault().post(new BatteryInfoEvent(num, BatteryV, BatteryT));
 
         Log.d("zk", "battery num = " + num);
@@ -153,6 +154,10 @@ public class BackService extends Service {
         rv.setTextViewText(R.id.tv_tem, "温度: " + df.format(BatteryT * 0.1) + " ℃");
         rv.setTextViewText(R.id.tv_dianya, "电压: " + df.format(BatteryV * 0.001) + " V");
         rv.setTextViewText(R.id.tv_state, "状态: " + BatteryStatus);
+        spu.setNum(num);
+        spu.setTem(df.format(BatteryT * 0.1) + " ℃");
+        spu.setDianya(df.format(BatteryV * 0.001) + " V");
+        spu.setBstate(BatteryStatus);
         startForeground(1989, mBuilder.build());
     }
 

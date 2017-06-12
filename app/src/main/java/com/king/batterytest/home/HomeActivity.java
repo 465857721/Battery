@@ -94,8 +94,7 @@ public class HomeActivity extends BaseActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
-        drawer.closeDrawer(GravityCompat.START);
+        closeDrawerLayout();
         return true;
     }
 
@@ -175,5 +174,10 @@ public class HomeActivity extends BaseActivity
 
         Intent i = new Intent(this, BackService.class);
         startService(i);
+    }
+
+    private void closeDrawerLayout() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
+        drawer.closeDrawer(GravityCompat.START);
     }
 }
