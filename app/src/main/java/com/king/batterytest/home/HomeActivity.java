@@ -1,5 +1,6 @@
 package com.king.batterytest.home;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.gelitenight.waveview.library.WaveView;
 import com.jaeger.library.StatusBarUtil;
 import com.king.batterytest.R;
+import com.king.batterytest.about.MyPhoneActivity;
 import com.king.batterytest.main.BaseActivity;
 import com.king.batterytest.main.event.BatteryInfoEvent;
 import com.king.batterytest.service.BackService;
@@ -46,14 +48,17 @@ public class HomeActivity extends BaseActivity
     private WaveView waveView;
     private int mBorderColor = Color.parseColor("#44FFFFFF");
     private int mBorderWidth = 10;
+    private Context mContext;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ButterKnife.bind(this);
+        mContext = this;
         EventBus.getDefault().register(this);
         startService();
-        ButterKnife.bind(this);
+
         intiView();
         mWaveHelper.start(spu.getNum() / 100);
     }
@@ -118,6 +123,15 @@ public class HomeActivity extends BaseActivity
 
         mWaveHelper = new WaveHelper(waveView);
         waveView.setShapeType(WaveView.ShapeType.CIRCLE);
+
+        // nva 头部点击
+        navigationView.getHeaderView(0).findViewById(R.id.ll_nav_head).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goPhone = new Intent(mContext, MyPhoneActivity.class);
+                startActivity(goPhone);
+            }
+        });
 
     }
 

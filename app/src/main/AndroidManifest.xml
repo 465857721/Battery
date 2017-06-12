@@ -74,21 +74,17 @@
         android:theme="@style/AppTheme"
         tools:replace="icon,label,theme">
         <activity
-            android:name=".home.LoadingActivity"
-            android:label="@string/title_activity_main">
+            android:name=".home.LoadingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.MainActivity"
-            android:label="@string/title_activity_main">
+            android:name=".main.MainActivity">
         </activity>
-        <activity
-            android:name=".about.AboutActivity"
-            android:label="@string/title_activity_main">
-        </activity>
+        <activity android:name=".about.AboutActivity"/>
+        <activity android:name=".about.MyPhoneActivity"/>
 
         <service
             android:name="com.king.batterytest.service.BackService"
