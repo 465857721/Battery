@@ -2,7 +2,6 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -33,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:paddingTop="10dp"
-                android:text="充电"
+                android:text="健康充电"
                 android:textColor="#696969"
                 android:textSize="13dp"
                 android:typeface="normal"/>
@@ -68,22 +67,67 @@
             app:side_to_side_min_duration="10000"
             />
 
-        <com.gelitenight.waveview.library.WaveView
-            android:id="@+id/wave"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-
-            android:layout_centerInParent="true"/>
-        <TextView
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="100%"
-            android:id="@+id/tv_leave"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:textSize="50sp"
-            android:textColor="@color/white"
-            android:layout_centerInParent="true"/>
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="200dp"
+                android:layout_height="200dp">
+
+                <com.gelitenight.waveview.library.WaveView
+                    android:id="@+id/wave"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"/>
+
+                <TextView
+                    android:id="@+id/tv_leave"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="100%"
+                    android:textColor="@color/white"
+                    android:textSize="50sp"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_clean_woring"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/icon_battery_exception"/>
+
+                <TextView
+                    android:id="@+id/tv_clean_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tips_background_woring"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_goclean"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/bg_shape_corner"
+                android:gravity="center"
+                android:text="一键省电"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
     </RelativeLayout>
 
 </RelativeLayout>

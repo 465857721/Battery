@@ -66,4 +66,26 @@
 
         </LinearLayout>
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_goclean"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_goclean"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:src="@drawable/ovalleaf"/>
+        <TextView
+            android:layout_marginTop="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="一键省电"
+            android:textAppearance="@style/TextAppearance.StatusBar.EventContent"/>
+    </LinearLayout>
+
 </RelativeLayout>

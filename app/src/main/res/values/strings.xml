@@ -1,9 +1,13 @@
 <resources>
 
-    <string name="app_name">电量显示</string>
+    <string name="app_name">电量显示2</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">电量显示</string>
+    <string name="tips_background_woring">发现后台异常耗电情况</string>
+    <string name="tips_background_normal">最佳省电状态</string>
+    <string name="tips_go_clean">一键省电</string>
+    <string name="tips_go_check">全面检查</string>
     <string name="title_activity_home">HomeActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
