@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.gelitenight.waveview.library.WaveView;
 import com.jaeger.library.StatusBarUtil;
 import com.king.battery.about.AboutActivity;
+import com.king.battery.about.SupportActivity;
 import com.king.batterytest.R;
 import com.king.battery.about.MyPhoneActivity;
 import com.king.battery.charge.ChargeActivity;
@@ -121,6 +122,9 @@ public class HomeActivity extends BaseActivity
             startActivity(aboutIntent);
         } else if (id == R.id.nav_setting) {
             Intent setIntent = new Intent(this, SettingActivity.class);
+            startActivity(setIntent);
+        }else if (id == R.id.nav_support) {
+            Intent setIntent = new Intent(this, SupportActivity.class);
             startActivity(setIntent);
         }
 //        closeDrawerLayout();

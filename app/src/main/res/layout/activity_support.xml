@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@android:color/white"
+                android:fitsSystemWindows="true">
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:theme="@style/AppBarTheme"/>
+        <com.king.battery.coustomview.LikeView
+            android:id="@+id/likeview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:cirRadius="50dp"
+            app:cycleTime="1600"
+            app:defaultColor="@color/colorPrimary" />
+
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:text="电量显示是作者业余时间编写，没有垃圾广告，如果您喜欢点击上面喜欢，弹出广告支持下吧"
+            android:textColor="#2d2d2d"
+            android:textSize="16sp"/>
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

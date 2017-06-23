@@ -12,13 +12,11 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.king.batterytest.R;
 import com.king.battery.main.BaseActivity;
+import com.king.battery.utils.Constants;
+import com.king.batterytest.R;
 import com.qq.e.ads.splash.SplashAD;
 import com.qq.e.ads.splash.SplashADListener;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class LoadingActivity extends BaseActivity implements SplashADListener {
@@ -28,6 +26,7 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
     private TextView skipView;
     private ImageView splashHolder;
     private static final String SKIP_TEXT = "点击跳过 %d";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
@@ -41,7 +40,7 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
         skipView = (TextView) findViewById(R.id.skip_view);
         splashHolder = (ImageView) findViewById(R.id.splash_holder);
 
-        fetchSplashAD(this, container, skipView, "1101189414", "9060124323597588", this, 0);
+        fetchSplashAD(this, container, skipView, Constants.APPID, Constants.SplashPosID, this, 0);
 
 
 //        Timer time = new Timer();
@@ -68,16 +67,17 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
         finish();
 
     }
+
     /**
      * 拉取开屏广告，开屏广告的构造方法有3种，详细说明请参考开发者文档。
      *
-     * @param activity        展示广告的activity
-     * @param adContainer     展示广告的大容器
-     * @param skipContainer   自定义的跳过按钮：传入该view给SDK后，SDK会自动给它绑定点击跳过事件。SkipView的样式可以由开发者自由定制，其尺寸限制请参考activity_splash.xml或下面的注意事项。
-     * @param appId           应用ID
-     * @param posId           广告位ID
-     * @param adListener      广告状态监听器
-     * @param fetchDelay      拉取广告的超时时长：取值范围[3000, 5000]，设为0表示使用广点通SDK默认的超时时长。
+     * @param activity      展示广告的activity
+     * @param adContainer   展示广告的大容器
+     * @param skipContainer 自定义的跳过按钮：传入该view给SDK后，SDK会自动给它绑定点击跳过事件。SkipView的样式可以由开发者自由定制，其尺寸限制请参考activity_splash.xml或下面的注意事项。
+     * @param appId         应用ID
+     * @param posId         广告位ID
+     * @param adListener    广告状态监听器
+     * @param fetchDelay    拉取广告的超时时长：取值范围[3000, 5000]，设为0表示使用广点通SDK默认的超时时长。
      */
     private void fetchSplashAD(Activity activity, ViewGroup adContainer, View skipContainer,
                                String appId, String posId, SplashADListener adListener, int fetchDelay) {
@@ -89,7 +89,6 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
         Log.i("AD_DEMO", "SplashADPresent");
         splashHolder.setVisibility(View.INVISIBLE); // 广告展示后一定要把预设的开屏图片隐藏起来
     }
-
 
 
     private void next() {

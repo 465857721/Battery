@@ -35,11 +35,11 @@
             android:textSize="18dip"/>
 
         <TextView
+            android:id="@+id/tv_version"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dip"
             android:gravity="center"
-
             android:text="V5.0.0"
             android:textColor="@android:color/black"
             android:textSize="18dip"/>
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dip"
             android:gravity="center"
-            android:text="起点网络工作室"
+            android:text="@string/str_company"
             android:textColor="@android:color/black"
             android:textSize="14dip"/>
 
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dip"
             android:gravity="center"
-            android:text="2017 All Rights Reserved"
+            android:text="@string/str_copyright"
             android:textColor="@android:color/black"
             android:textSize="14dip"/>
 

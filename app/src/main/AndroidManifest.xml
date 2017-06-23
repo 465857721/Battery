@@ -96,6 +96,7 @@
             android:name="com.king.battery.clean.CleanActivity"/>
         <activity android:name="com.king.battery.charge.ChargeActivity"/>
         <activity android:name="com.king.battery.setting.SettingActivity"/>
+        <activity android:name="com.king.battery.about.SupportActivity"/>
         <service
             android:name="com.king.battery.service.BackService"
             android:enabled="true"/>
