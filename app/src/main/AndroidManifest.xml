@@ -86,7 +86,7 @@
         </activity>
         <activity android:name="com.king.battery.main.MainActivity"/>
         <activity
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:name="com.king.battery.home.HomeActivity"/>
         <activity android:name="com.king.battery.about.AboutActivity"/>
         <activity android:name="com.king.battery.about.MyPhoneActivity"/>
@@ -94,6 +94,10 @@
             android:launchMode="singleTop"
             android:exported="true"
             android:name="com.king.battery.clean.CleanActivity"/>
+        <activity
+            android:launchMode="singleTop"
+            android:exported="true"
+            android:name="com.king.battery.clean.CoolActivity"/>
         <activity android:name="com.king.battery.charge.ChargeActivity"/>
         <activity android:name="com.king.battery.setting.SettingActivity"/>
         <activity android:name="com.king.battery.about.SupportActivity"/>

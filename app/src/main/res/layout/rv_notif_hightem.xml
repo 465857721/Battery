@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:src="@drawable/noti_temperature_high"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/iv_icon"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+
+
+            <TextView
+                android:id="@+id/tv_tem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                tools:text="电池温度达到:39℃"
+                android:textAppearance="@style/TextAppearance.StatusBar.EventContent"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_goclean"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_goclean"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:src="@drawable/short_cut_cold_palace"/>
+        <TextView
+            android:layout_marginTop="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="一键降温"
+            android:textAppearance="@style/TextAppearance.StatusBar.EventContent"/>
+    </LinearLayout>
+
+</RelativeLayout>

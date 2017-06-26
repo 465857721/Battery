@@ -51,4 +51,20 @@ public class SharePreferenceUtil {
     public String getBstate() {
         return sp.getString(BSTATE, "");
     }
+
+    public void setNoticTem(boolean is) {
+        editor.putBoolean("notice_tem", is);
+        editor.commit();
+    }
+
+    public boolean getIsNoticeTem() {
+        return sp.getBoolean("notice_tem", true);
+    }
+    public void setTemLongTime(Long l){
+        editor.putLong("temtime",l);
+        editor.commit();
+    }
+    public Long getTemLongTime(){
+        return sp.getLong("temtime",0);
+    }
 }

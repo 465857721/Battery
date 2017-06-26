@@ -12,7 +12,30 @@
         android:layout_alignParentBottom="true"
         android:background="@color/white"
         android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/ll_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.0"
+            android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_home_bottom_save"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="10dp"
+                android:text="快速省电"
+                android:textColor="#696969"
+                android:textSize="13dp"
+                android:typeface="normal"/>
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/ll_charge"
             android:layout_width="wrap_content"
@@ -25,7 +48,7 @@
                 android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:layout_gravity="center"
-                android:src="@drawable/charge_clicked"/>
+                android:src="@drawable/icon_home_bottom_charge"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -33,6 +56,30 @@
                 android:layout_gravity="center"
                 android:paddingTop="10dp"
                 android:text="健康充电"
+                android:textColor="#696969"
+                android:textSize="13dp"
+                android:typeface="normal"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_cool"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.0"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_home_bottom_cool"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="10dp"
+                android:text="快速降温"
                 android:textColor="#696969"
                 android:textSize="13dp"
                 android:typeface="normal"/>

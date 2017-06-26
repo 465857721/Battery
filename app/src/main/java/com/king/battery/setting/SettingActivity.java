@@ -31,6 +31,8 @@ public class SettingActivity extends BaseActivity {
     Toolbar mToolbar;
     @Bind(R.id.sw_notice)
     CheckBox swNotice;
+    @Bind(R.id.sw_tem)
+    CheckBox swNoticeTem;
 
     private Context mContext;
 
@@ -45,7 +47,7 @@ public class SettingActivity extends BaseActivity {
         boolean c = Tools.isWorked(this, "com.king.battery.service.BackService");
         Log.d("zk", "a" + c);
         swNotice.setChecked(c);
-
+        swNoticeTem.setChecked(spu.getIsNoticeTem());
 
     }
 
@@ -73,6 +75,13 @@ public class SettingActivity extends BaseActivity {
                 } else {
                     stopService(i);
                 }
+            }
+        });
+        swNoticeTem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                spu.setNoticTem(isChecked);
+
             }
         });
     }

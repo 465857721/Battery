@@ -14,6 +14,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ import com.gelitenight.waveview.library.WaveView;
 import com.jaeger.library.StatusBarUtil;
 import com.king.battery.about.AboutActivity;
 import com.king.battery.about.SupportActivity;
+import com.king.battery.clean.CoolActivity;
 import com.king.batterytest.R;
 import com.king.battery.about.MyPhoneActivity;
 import com.king.battery.charge.ChargeActivity;
@@ -94,8 +96,21 @@ public class HomeActivity extends BaseActivity
                 mHandler.sendEmptyMessage(0);
             }
         }).start();
+        goToWhere(getIntent());
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        Log.d("zk","home onNewIntent");
+        goToWhere(intent);
+        super.onNewIntent(intent);
+    }
+    private void goToWhere(Intent intent){
+        if(intent==null)
+            return;
+
+
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
@@ -192,12 +207,20 @@ public class HomeActivity extends BaseActivity
 
     }
 
-    @OnClick({R.id.ll_charge, R.id.tv_goclean})
+    @OnClick({R.id.ll_save,R.id.ll_cool,R.id.ll_charge, R.id.tv_goclean})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_charge:
                 Intent goCharge = new Intent(mContext, ChargeActivity.class);
                 startActivity(goCharge);
+                break;
+            case R.id.ll_save:
+                Intent gosaveCharge = new Intent(mContext, CleanActivity.class);
+                startActivity(gosaveCharge);
+                break;
+            case R.id.ll_cool:
+                Intent gocoolCharge = new Intent(mContext, CoolActivity.class);
+                startActivity(gocoolCharge);
                 break;
             case R.id.tv_goclean:
                 Intent goClean = new Intent(mContext, CleanActivity.class);

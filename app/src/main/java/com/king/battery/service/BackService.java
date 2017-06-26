@@ -1,6 +1,7 @@
 package com.king.battery.service;
 
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -16,8 +17,8 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.king.battery.clean.CleanActivity;
-import com.king.battery.home.HomeActivity;
-import com.king.battery.main.MainActivity;
+import com.king.battery.clean.CoolActivity;
+import com.king.battery.home.LoadingActivity;
 import com.king.battery.main.event.BatteryInfoEvent;
 import com.king.battery.utils.SharePreferenceUtil;
 import com.king.battery.utils.Tools;
@@ -31,6 +32,9 @@ import java.text.DecimalFormat;
 public class BackService extends Service {
     private Notification baseNF;
     private SharePreferenceUtil spu;
+    private int level, scale, BatteryV, BatteryT;
+    private Context mContext;
+    private NotificationManager mNotificationManager;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -74,15 +78,18 @@ public class BackService extends Service {
         }
     };
 
-    private void startNoti(Context mContext, Intent intent) {
-        int level = intent.getIntExtra("level", 0);
-        int scale = intent.getIntExtra("scale", 100);
+    private void startNoti(Context context, Intent intent) {
+        mContext = context;
+
+        mNotificationManager = (NotificationManager) mContext.getSystemService(NOTIFICATION_SERVICE);
+        level = intent.getIntExtra("level", 0);
+        scale = intent.getIntExtra("scale", 100);
 //        int status = intent.getIntExtra("status", 0);
-        int BatteryV = intent.getIntExtra("voltage", 0);  //电池电压
-        int BatteryT = intent.getIntExtra("temperature", 0);  //电池温度
+        BatteryV = intent.getIntExtra("voltage", 0);  //电池电压
+        BatteryT = intent.getIntExtra("temperature", 0);  //电池温度
 
 
-        Intent pintent = new Intent(mContext, HomeActivity.class);
+        Intent pintent = new Intent(mContext, LoadingActivity.class);
 
         PendingIntent pendingIntent =
                 PendingIntent.getActivity(
@@ -147,7 +154,7 @@ public class BackService extends Service {
         RemoteViews rv = new RemoteViews(getPackageName(), R.layout.rv_notif_allstate);
 
         Intent goClean = new Intent(mContext, CleanActivity.class);
-        goClean.putExtra("flag",1);
+        goClean.putExtra("flag", 1);
         PendingIntent goCleanpendingIntent =
                 PendingIntent.getActivity(
                         mContext, 1, goClean, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -166,6 +173,48 @@ public class BackService extends Service {
         spu.setDianya(df.format(BatteryV * 0.001) + " V");
         spu.setBstate(BatteryStatus);
         startForeground(1989, mBuilder.build());
+        noticeTem();
+    }
+
+    private void noticeTem() {
+        if (!spu.getIsNoticeTem() || BatteryT < 400)
+            return;
+        Intent pintent = new Intent(mContext, LoadingActivity.class);
+        //  两次间隔30分钟以上
+        if (System.currentTimeMillis() - spu.getTemLongTime()  < 30 * 60 * 1000)
+            return;
+        spu.setTemLongTime(System.currentTimeMillis());
+
+        PendingIntent pendingIntent =
+                PendingIntent.getActivity(
+                        mContext, 1, pintent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mContext);
+        mBuilder.setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), R.drawable.iconnew))
+                .setContentIntent(pendingIntent) //设置通知栏点击意图
+//                .setWhen(System.currentTimeMillis())//通知产生的时间，会在通知信息里显示，一般是系统获取到的时间
+                .setPriority(Notification.PRIORITY_DEFAULT) //设置该通知优先级
+                .setDefaults(Notification.DEFAULT_SOUND)
+                .setAutoCancel(true)//设置这个标志当用户单击面板就可以让通知将自动取消
+                .setSmallIcon(R.drawable.woring).setOngoing(true);
+        RemoteViews rv = new RemoteViews(getPackageName(), R.layout.rv_notif_hightem);
+        DecimalFormat df = new DecimalFormat("######0.0");
+        rv.setTextViewText(R.id.tv_tem, "电池温度已达到:" + df.format(BatteryT * 0.1) + " ℃");
+
+        Intent goCool = new Intent(mContext, CoolActivity.class);
+        goCool.putExtra("flag", 1);
+        PendingIntent goCoolIntent =
+                PendingIntent.getActivity(
+                        mContext, 1, goCool, PendingIntent.FLAG_UPDATE_CURRENT);
+        rv.setOnClickPendingIntent(R.id.ll_goclean, goCoolIntent);
+
+
+        mBuilder.setContent(rv);
+        Notification notify = mBuilder.build();
+        notify.flags |= Notification.FLAG_ONLY_ALERT_ONCE;
+
+        mNotificationManager.notify(1990, notify);
+
     }
 
 }
