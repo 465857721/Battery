@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.king.battery.main.BaseActivity;
-import com.king.battery.utils.Constants;
 import com.king.batterytest.R;
 import com.qq.e.ads.splash.SplashAD;
 import com.qq.e.ads.splash.SplashADListener;
@@ -40,7 +39,7 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
         skipView = (TextView) findViewById(R.id.skip_view);
         splashHolder = (ImageView) findViewById(R.id.splash_holder);
 
-        fetchSplashAD(this, container, skipView, Constants.APPID, Constants.SplashPosID, this, 0);
+        fetchSplashAD(this, container, skipView, "1101189414", "9060124323597588", this, 0);
 
 
 //        Timer time = new Timer();

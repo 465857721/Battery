@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.king.battery.main.BaseActivity;
-import com.king.battery.utils.Constants;
 import com.king.battery.utils.Tools;
 import com.king.batterytest.R;
 import com.qq.e.ads.interstitial.AbstractInterstitialADListener;
@@ -33,7 +32,7 @@ public class SupportActivity extends BaseActivity {
         setContentView(R.layout.activity_support);
         ButterKnife.bind(this);
         initViw();
-        iad = new InterstitialAD(this, Constants.APPID, Constants.InterteristalPosID);
+        iad = new InterstitialAD(this, "1101189414", "1000129344049991");
         iad.setADListener(new AbstractInterstitialADListener() {
 
             @Override
