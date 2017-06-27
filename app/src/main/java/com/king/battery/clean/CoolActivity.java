@@ -14,7 +14,9 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.jaeger.library.StatusBarUtil;
@@ -24,6 +26,9 @@ import com.king.battery.clean.event.CleanFinishEvent;
 import com.king.battery.home.HomeActivity;
 import com.king.battery.main.BaseActivity;
 import com.king.batterytest.R;
+import com.qq.e.ads.banner.ADSize;
+import com.qq.e.ads.banner.AbstractBannerADListener;
+import com.qq.e.ads.banner.BannerView;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -54,6 +59,13 @@ public class CoolActivity extends BaseActivity implements Handler.Callback {
     private Timer timer;
     private TaskAdapter adapter;
     private int flag = 0;// 1 为从通知进来
+
+    @Bind(R.id.card_finish_ad)
+    CardView cardFinishAD;
+
+    ViewGroup bannerContainer;
+    BannerView bv;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
@@ -75,12 +87,7 @@ public class CoolActivity extends BaseActivity implements Handler.Callback {
                 mHandler.sendEmptyMessage(0);
             }
         }).start();
-
-
-//        final RotateAnimation animation =new RotateAnimation(0f,360f, Animation.RELATIVE_TO_SELF,
-//                0f,Animation.RELATIVE_TO_SELF,0f);
-//        animation.setDuration(3000);//设置动画持续时间
-//        cardFinishTop.setAnimation(animation);
+        bannerContainer = (ViewGroup) this.findViewById(R.id.bannerContainer);
 
     }
 
@@ -164,10 +171,32 @@ public class CoolActivity extends BaseActivity implements Handler.Callback {
     private void onCleanFinish() {
         googleProgress.setVisibility(View.GONE);
         cardFinishTop.setVisibility(View.VISIBLE);
+        cardFinishAD.setVisibility(View.VISIBLE);
         ObjectAnimator//
                 .ofFloat(cardFinishTop, "rotationX", -90F, 0f)//
                 .setDuration(1000)//
                 .start();
+        initBanner();
+        bv.loadAD();
         EventBus.getDefault().post(new CleanFinishEvent());
+    }
+    private void initBanner() {
+        this.bv = new BannerView(this, ADSize.BANNER, "1101189414", "4090829316242214");
+        // 注意：如果开发者的banner不是始终展示在屏幕中的话，请关闭自动刷新，否则将导致曝光率过低。
+        // 并且应该自行处理：当banner广告区域出现在屏幕后，再手动loadAD。
+        bv.setRefresh(30);
+        bv.setADListener(new AbstractBannerADListener() {
+
+            @Override
+            public void onNoAD(int arg0) {
+                Log.i("AD_DEMO", "BannerNoAD，eCode=" + arg0);
+            }
+
+            @Override
+            public void onADReceiv() {
+                Log.i("AD_DEMO", "ONBannerReceive");
+            }
+        });
+        bannerContainer.addView(bv);
     }
 }
