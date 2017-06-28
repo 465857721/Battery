@@ -13,18 +13,17 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.jaeger.library.StatusBarUtil;
-import com.king.battery.clean.event.CleanFinishEvent;
-import com.king.battery.home.HomeActivity;
-import com.king.batterytest.R;
 import com.king.battery.clean.adapter.TaskAdapter;
 import com.king.battery.clean.bean.TaskInfo;
+import com.king.battery.clean.event.CleanFinishEvent;
+import com.king.battery.home.HomeActivity;
 import com.king.battery.main.BaseActivity;
+import com.king.batterytest.R;
 import com.qq.e.ads.banner.ADSize;
 import com.qq.e.ads.banner.AbstractBannerADListener;
 import com.qq.e.ads.banner.BannerView;
@@ -37,8 +36,6 @@ import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
-import static android.animation.ObjectAnimator.ofFloat;
 
 
 public class CleanActivity extends BaseActivity implements Handler.Callback {
@@ -62,14 +59,15 @@ public class CleanActivity extends BaseActivity implements Handler.Callback {
     private TaskAdapter adapter;
     private int flag = 0;// 1 为从通知进来
 
-    ViewGroup bannerContainer;
-    BannerView bv;
+    private ViewGroup bannerContainer;
+    private BannerView bv;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clean);
-        flag = getIntent().getIntExtra("flag",0);
+        flag = getIntent().getIntExtra("flag", 0);
         ButterKnife.bind(this);
         timer = new Timer();
         initViw();
@@ -82,7 +80,7 @@ public class CleanActivity extends BaseActivity implements Handler.Callback {
                 mHandler.sendEmptyMessage(0);
             }
         }).start();
-        bannerContainer = (ViewGroup) this.findViewById(R.id.bannerContainer);
+        bannerContainer = (ViewGroup) this.findViewById(R.id.bv);
 
 
     }
@@ -96,7 +94,7 @@ public class CleanActivity extends BaseActivity implements Handler.Callback {
     public void onBackPressed() {
         timer.cancel();
         super.onBackPressed();
-        if(flag==1){
+        if (flag == 1) {
             Intent goHome = new Intent(mContext, HomeActivity.class);
             startActivity(goHome);
         }
@@ -176,21 +174,21 @@ public class CleanActivity extends BaseActivity implements Handler.Callback {
         bv.loadAD();
         EventBus.getDefault().post(new CleanFinishEvent());
     }
+
     private void initBanner() {
         this.bv = new BannerView(this, ADSize.BANNER, "1101189414", "4090829316242214");
-        // 注意：如果开发者的banner不是始终展示在屏幕中的话，请关闭自动刷新，否则将导致曝光率过低。
-        // 并且应该自行处理：当banner广告区域出现在屏幕后，再手动loadAD。
+
         bv.setRefresh(30);
         bv.setADListener(new AbstractBannerADListener() {
 
             @Override
             public void onNoAD(int arg0) {
-                Log.i("AD_DEMO", "BannerNoAD，eCode=" + arg0);
+
             }
 
             @Override
             public void onADReceiv() {
-                Log.i("AD_DEMO", "ONBannerReceive");
+
             }
         });
         bannerContainer.addView(bv);

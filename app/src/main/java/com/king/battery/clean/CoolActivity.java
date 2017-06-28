@@ -63,8 +63,8 @@ public class CoolActivity extends BaseActivity implements Handler.Callback {
     @Bind(R.id.card_finish_ad)
     CardView cardFinishAD;
 
-    ViewGroup bannerContainer;
-    BannerView bv;
+    private ViewGroup bannerContainer;
+    private BannerView bv;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -87,7 +87,7 @@ public class CoolActivity extends BaseActivity implements Handler.Callback {
                 mHandler.sendEmptyMessage(0);
             }
         }).start();
-        bannerContainer = (ViewGroup) this.findViewById(R.id.bannerContainer);
+        bannerContainer = (ViewGroup) this.findViewById(R.id.bv);
 
     }
 
@@ -182,19 +182,17 @@ public class CoolActivity extends BaseActivity implements Handler.Callback {
     }
     private void initBanner() {
         this.bv = new BannerView(this, ADSize.BANNER, "1101189414", "4090829316242214");
-        // 注意：如果开发者的banner不是始终展示在屏幕中的话，请关闭自动刷新，否则将导致曝光率过低。
-        // 并且应该自行处理：当banner广告区域出现在屏幕后，再手动loadAD。
         bv.setRefresh(30);
         bv.setADListener(new AbstractBannerADListener() {
 
             @Override
             public void onNoAD(int arg0) {
-                Log.i("AD_DEMO", "BannerNoAD，eCode=" + arg0);
+
             }
 
             @Override
             public void onADReceiv() {
-                Log.i("AD_DEMO", "ONBannerReceive");
+
             }
         });
         bannerContainer.addView(bv);

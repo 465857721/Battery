@@ -63,7 +63,7 @@
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="5dp">
         <FrameLayout
-            android:id="@+id/bannerContainer"
+            android:id="@+id/bv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true" >

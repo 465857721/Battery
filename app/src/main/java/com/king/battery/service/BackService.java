@@ -181,7 +181,10 @@ public class BackService extends Service {
             return;
         Intent pintent = new Intent(mContext, LoadingActivity.class);
         //  两次间隔30分钟以上
-        if (System.currentTimeMillis() - spu.getTemLongTime()  < 30 * 60 * 1000)
+        Log.d("zktem", "System = " + System.currentTimeMillis());
+        Log.d("zktem", "TemLong = " + spu.getTemLongTime());
+        Log.d("zktem", "---- = " + (System.currentTimeMillis() - spu.getTemLongTime()));
+        if (System.currentTimeMillis() - spu.getTemLongTime() < 30 * 60 * 1000)
             return;
         spu.setTemLongTime(System.currentTimeMillis());
 
