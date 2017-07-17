@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,14 +16,17 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
 import com.jaeger.library.StatusBarUtil;
 import com.king.battery.clean.adapter.TaskAdapter;
 import com.king.battery.clean.bean.TaskInfo;
 import com.king.battery.clean.event.CleanFinishEvent;
 import com.king.battery.home.HomeActivity;
 import com.king.battery.main.BaseActivity;
+import com.king.battery.utils.Tools;
 import com.king.batterytest.R;
 import com.qq.e.ads.banner.ADSize;
 import com.qq.e.ads.banner.AbstractBannerADListener;
@@ -52,6 +56,10 @@ public class CleanActivity extends BaseActivity implements Handler.Callback {
     CardView cardFinishTop;
     @Bind(R.id.card_finish_ad)
     CardView cardFinishAD;
+    @Bind(R.id.card_splash)
+    CardView cardSplash;
+    @Bind(R.id.iv_splash)
+    ImageView ivSplash;
     private List<TaskInfo> list;
     private Handler mHandler;
     private Context mContext;
@@ -173,6 +181,14 @@ public class CleanActivity extends BaseActivity implements Handler.Callback {
         initBanner();
         bv.loadAD();
         EventBus.getDefault().post(new CleanFinishEvent());
+        cardSplash.setVisibility(View.VISIBLE);
+        Glide.with(this).load(R.drawable.preview).into(ivSplash);
+        cardSplash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Tools.goSplash(mContext);
+            }
+        });
     }
 
     private void initBanner() {

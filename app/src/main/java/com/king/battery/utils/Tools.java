@@ -305,4 +305,12 @@ public class Tools {
         }
         return null;
     }
+
+    public static void goSplash(Context mContent) {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        Uri content_url = Uri.parse("http://a.app.qq.com/o/simple.jsp?pkgname=com.android11.wallpager");
+        intent.setData(content_url);
+        mContent.startActivity(intent);
+    }
 }
