@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 
 import com.king.battery.main.BaseActivity;
 import com.king.battery.service.BackService;
+import com.king.battery.speed.SpeedActivity;
 import com.king.battery.utils.Tools;
 import com.king.batterytest.R;
 
@@ -86,7 +87,7 @@ public class SettingActivity extends BaseActivity {
         });
     }
 
-    @OnClick({R.id.rl_shortcut, R.id.rl_theme})
+    @OnClick({R.id.rl_speed,R.id.rl_shortcut, R.id.rl_theme})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_theme:
@@ -96,6 +97,10 @@ public class SettingActivity extends BaseActivity {
                 break;
             case R.id.rl_shortcut:
                 Tools.createShortcut(this);
+                break;
+            case R.id.rl_speed:
+                Intent speedIntent = new Intent(mContext, SpeedActivity.class);
+                startActivity(speedIntent);
                 break;
         }
     }

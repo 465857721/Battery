@@ -2,7 +2,6 @@ package com.king.battery.home;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -23,12 +22,11 @@ import android.widget.TextView;
 import com.gelitenight.waveview.library.WaveView;
 import com.jaeger.library.StatusBarUtil;
 import com.king.battery.about.AboutActivity;
-import com.king.battery.about.SupportActivity;
-import com.king.battery.clean.CoolActivity;
-import com.king.batterytest.R;
 import com.king.battery.about.MyPhoneActivity;
+import com.king.battery.about.SupportActivity;
 import com.king.battery.charge.ChargeActivity;
 import com.king.battery.clean.CleanActivity;
+import com.king.battery.clean.CoolActivity;
 import com.king.battery.clean.TaskUtils;
 import com.king.battery.clean.bean.TaskInfo;
 import com.king.battery.clean.event.CleanFinishEvent;
@@ -36,8 +34,10 @@ import com.king.battery.main.BaseActivity;
 import com.king.battery.main.event.BatteryInfoEvent;
 import com.king.battery.service.BackService;
 import com.king.battery.setting.SettingActivity;
+import com.king.battery.speed.SpeedActivity;
 import com.king.battery.utils.Tools;
 import com.king.battery.utils.WaveHelper;
+import com.king.batterytest.R;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -101,16 +101,18 @@ public class HomeActivity extends BaseActivity
 
     @Override
     protected void onNewIntent(Intent intent) {
-        Log.d("zk","home onNewIntent");
+        Log.d("zk", "home onNewIntent");
         goToWhere(intent);
         super.onNewIntent(intent);
     }
-    private void goToWhere(Intent intent){
-        if(intent==null)
+
+    private void goToWhere(Intent intent) {
+        if (intent == null)
             return;
 
 
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
@@ -138,7 +140,7 @@ public class HomeActivity extends BaseActivity
         } else if (id == R.id.nav_setting) {
             Intent setIntent = new Intent(this, SettingActivity.class);
             startActivity(setIntent);
-        }else if (id == R.id.nav_support) {
+        } else if (id == R.id.nav_support) {
             Intent setIntent = new Intent(this, SupportActivity.class);
             startActivity(setIntent);
         }
@@ -207,12 +209,16 @@ public class HomeActivity extends BaseActivity
 
     }
 
-    @OnClick({R.id.ll_save,R.id.ll_cool,R.id.ll_charge, R.id.tv_goclean})
+    @OnClick({R.id.ll_wifi, R.id.ll_save, R.id.ll_cool, R.id.ll_charge, R.id.tv_goclean})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_charge:
                 Intent goCharge = new Intent(mContext, ChargeActivity.class);
                 startActivity(goCharge);
+                break;
+            case R.id.ll_wifi:
+                Intent goWifi = new Intent(mContext, SpeedActivity.class);
+                startActivity(goWifi);
                 break;
             case R.id.ll_save:
                 Intent gosaveCharge = new Intent(mContext, CleanActivity.class);
@@ -292,7 +298,7 @@ public class HomeActivity extends BaseActivity
             return true;
         } catch (Exception e) {
             // 未安装手Q或安装的版本不支持
-            Tools.toastInBottom(this,"未安装手Q或安装的版本不支持");
+            Tools.toastInBottom(this, "未安装手Q或安装的版本不支持");
             return false;
         }
     }

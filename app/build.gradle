@@ -4,11 +4,11 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
-        applicationId "com.king.batterytestqihu3602"
+        applicationId "com.king.batterytest"
         minSdkVersion 16
         targetSdkVersion 19
-        versionCode 511
-        versionName "5.1.1"
+        versionCode 514
+        versionName "5.1.4"
     }
 
     buildTypes {

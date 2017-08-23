@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/activity_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true">
+    <FrameLayout
+
+        android:id="@+id/bv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+    </FrameLayout>
+    <ScrollView
+       android:layout_above="@id/bv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:theme="@style/AppBarTheme"/>
+
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <RadioButton
+                android:id="@+id/radio_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onRadioButtonClick"
+                android:text="显示上下行"/>
+
+            <RadioButton
+                android:id="@+id/radio_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onRadioButtonClick"
+                android:text="显示上行"/>
+
+            <RadioButton
+                android:id="@+id/radio_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onRadioButtonClick"
+                android:text="显示下行"/>
+        </RadioGroup>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <Button
+                android:id="@+id/bt_show"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="打开悬浮窗"
+                android:textColor="@color/white"/>
+
+            <Button
+                android:id="@+id/bt_close"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bt_show"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="关闭悬浮窗"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:text="有些系统限制，例如（MIUI，Flyme）等第三方rom,需要单独开启悬浮窗权限。。。"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"/>
+        <ImageView
+            android:layout_margin="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/float_permision"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"/>
+        <Button
+            android:id="@+id/bt_gosetting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimary"
+            android:text="去开启悬浮窗权限"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

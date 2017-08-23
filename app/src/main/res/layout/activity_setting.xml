@@ -227,6 +227,47 @@
 
 
             </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingTop="15dp"
+                android:text="网速悬浮窗"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"/>
+
+            <include layout="@layout/item_line"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_speed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:paddingBottom="10dp"
+                android:paddingTop="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="设置网速悬浮窗"
+                        android:textColor="@color/text_commen"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="桌面上显示一个悬浮窗，实时显示上下行网速"
+                        android:textColor="#c5ced9"/>
+                </LinearLayout>
+
+
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
