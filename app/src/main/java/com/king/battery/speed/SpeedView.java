@@ -1,12 +1,15 @@
 package com.king.battery.speed;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.king.battery.home.LoadingActivity;
 import com.king.batterytest.R;
+
 
 /**
  * Created by mrrobot on 16/12/28.
@@ -18,7 +21,8 @@ public class SpeedView extends FrameLayout {
     public TextView upText;
     private WindowManager windowManager;
     private int statusBarHeight;
-    private float preX, preY, x, y;
+    private float preX, preY, x, y, downX, downY;
+    private final int clickdis = 30;
 
     public SpeedView(Context context) {
         super(context);
@@ -41,6 +45,8 @@ public class SpeedView extends FrameLayout {
             case MotionEvent.ACTION_DOWN:
                 preX = event.getRawX();
                 preY = event.getRawY() - statusBarHeight;
+                downX = event.getRawX();
+                downY = event.getRawY() - statusBarHeight;
                 return true;
             case MotionEvent.ACTION_MOVE:
                 x = event.getRawX();
@@ -51,6 +57,15 @@ public class SpeedView extends FrameLayout {
                 windowManager.updateViewLayout(this, params);
                 preX = x;
                 preY = y;
+                return true;
+            case MotionEvent.ACTION_UP:
+                if (Math.abs(downX - event.getRawX()) < clickdis &&
+                        Math.abs(downY - event.getRawY()) < clickdis) {
+                    Intent go = new Intent(mContext, LoadingActivity.class);
+                    go.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    go.putExtra("type",1);
+                    mContext.startActivity(go);
+                }
                 return true;
             default:
                 break;

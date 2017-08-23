@@ -62,6 +62,11 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
     private void gotoActivity() {
         Intent go;
         go = new Intent(this, HomeActivity.class);
+        getIntent().getExtras();
+        if (getIntent() != null) {
+            go.putExtra("type", getIntent().getIntExtra("type", 0));
+        }
+
         startActivity(go);
         finish();
 
@@ -91,8 +96,9 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
 
 
     private void next() {
-        this.startActivity(new Intent(this, HomeActivity.class));
+
         //防止用户回退看到此页面
+        gotoActivity();
         this.finish();
     }
 

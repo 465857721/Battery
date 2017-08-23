@@ -109,7 +109,11 @@ public class HomeActivity extends BaseActivity
     private void goToWhere(Intent intent) {
         if (intent == null)
             return;
-
+        //1 go speed
+        if (intent.getIntExtra("type", 0) == 1) {
+            Intent goWifi = new Intent(mContext, SpeedActivity.class);
+            startActivity(goWifi);
+        }
 
     }
 
