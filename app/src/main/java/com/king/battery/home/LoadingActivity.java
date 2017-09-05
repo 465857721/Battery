@@ -16,6 +16,7 @@ import com.king.battery.main.BaseActivity;
 import com.king.batterytest.R;
 import com.qq.e.ads.splash.SplashAD;
 import com.qq.e.ads.splash.SplashADListener;
+import com.qq.e.comm.util.AdError;
 
 
 public class LoadingActivity extends BaseActivity implements SplashADListener {
@@ -38,8 +39,10 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
         container = (ViewGroup) this.findViewById(R.id.splash_container);
         skipView = (TextView) findViewById(R.id.skip_view);
         splashHolder = (ImageView) findViewById(R.id.splash_holder);
-
-        fetchSplashAD(this, container, skipView, "1101189414", "9060124323597588", this, 5000);
+        // yyb
+        //fetchSplashAD(this, container, skipView, "1101189414", "9060124323597588", this, 5000);
+        //baidu
+        fetchSplashAD(this, container, skipView, "1106156011", "8030326585147706", this, 5000);
 
 
 //        Timer time = new Timer();
@@ -109,10 +112,16 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
     }
 
     @Override
-    public void onNoAD(int arg0) {
-        Log.i("AD_DEMO", "LoadSplashADFail,ecode=" + arg0);
+    public void onNoAD(AdError adError) {
+        Log.i("AD_DEMO", adError.getErrorMsg() + adError.getErrorCode());
         next();
     }
+
+//    @Override
+//    public void onNoAD(int arg0) {
+//        Log.i("AD_DEMO", "LoadSplashADFail,ecode=" + arg0);
+//        next();
+//    }
 
 
     @Override

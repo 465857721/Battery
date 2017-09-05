@@ -1,5 +1,6 @@
 package com.king.battery.home;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,6 +47,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -68,6 +72,8 @@ public class HomeActivity extends BaseActivity
     TextView tvCleanState;
     @Bind(R.id.tv_goclean)
     TextView tvGoclean;
+    @Bind(R.id.tv_tips)
+    TextView tvTips;
 
     private WaveHelper mWaveHelper;
     private WaveView waveView;
@@ -97,7 +103,18 @@ public class HomeActivity extends BaseActivity
             }
         }).start();
         goToWhere(getIntent());
-    }
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ObjectAnimator anim = ObjectAnimator//
+                        .ofFloat(tvTips, "alpha", 1.0F,  0.0F)//
+                        .setDuration(1000);//
+                anim.start();
+
+            }
+        },6000);
+
+}
 
     @Override
     protected void onNewIntent(Intent intent) {

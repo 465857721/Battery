@@ -20,6 +20,7 @@ import com.king.batterytest.R;
 import com.qq.e.ads.banner.ADSize;
 import com.qq.e.ads.banner.AbstractBannerADListener;
 import com.qq.e.ads.banner.BannerView;
+import com.qq.e.comm.util.AdError;
 
 
 public class SpeedActivity extends BaseActivity {
@@ -105,20 +106,29 @@ public class SpeedActivity extends BaseActivity {
         initBanner();
         bv.loadAD();
     }
+
     private void initBanner() {
-        this.bv = new BannerView(this, ADSize.BANNER, "1101189414", "5040624571474334");
+        //yyb
+        // this.bv = new BannerView(this, ADSize.BANNER, "1101189414", "5040624571474334");
+        //baidu
+        this.bv = new BannerView(this, ADSize.BANNER, "1106156011", "3070323555242789");
 
         bv.setRefresh(30);
         bv.setADListener(new AbstractBannerADListener() {
 
+//            @Override
+//            public void onNoAD(int arg0) {
+//                Log.d("zk","onNoAD");
+//            }
+
             @Override
-            public void onNoAD(int arg0) {
-                Log.d("zk","onNoAD");
+            public void onNoAD(AdError adError) {
+
             }
 
             @Override
             public void onADReceiv() {
-                Log.d("zk","onADReceiv");
+                Log.d("zk", "onADReceiv");
             }
         });
         bannerContainer.addView(bv);

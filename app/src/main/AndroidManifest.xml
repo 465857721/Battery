@@ -161,7 +161,7 @@
         </meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="AS360"/>
+            android:value="360"/>
 
         <service
             android:name="com.qq.e.comm.DownloadService"

@@ -14,6 +14,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -31,6 +32,7 @@ import com.king.batterytest.R;
 import com.qq.e.ads.banner.ADSize;
 import com.qq.e.ads.banner.AbstractBannerADListener;
 import com.qq.e.ads.banner.BannerView;
+import com.qq.e.comm.util.AdError;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -192,14 +194,21 @@ public class CleanActivity extends BaseActivity implements Handler.Callback {
     }
 
     private void initBanner() {
-        this.bv = new BannerView(this, ADSize.BANNER, "1101189414", "4090829316242214");
-
+        //yyb
+        // this.bv = new BannerView(this, ADSize.BANNER, "1101189414", "5040624571474334");
+        //baidu
+        this.bv = new BannerView(this, ADSize.BANNER, "1106156011", "3070323555242789");
         bv.setRefresh(30);
         bv.setADListener(new AbstractBannerADListener() {
 
-            @Override
-            public void onNoAD(int arg0) {
+//            @Override
+//            public void onNoAD(int arg0) {
+//
+//            }
 
+            @Override
+            public void onNoAD(AdError adError) {
+                Log.i("AD_DEMO", adError.getErrorMsg() + adError.getErrorCode());
             }
 
             @Override
