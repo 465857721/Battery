@@ -27,6 +27,7 @@ import com.king.battery.clean.bean.TaskInfo;
 import com.king.battery.clean.event.CleanFinishEvent;
 import com.king.battery.home.HomeActivity;
 import com.king.battery.main.BaseActivity;
+import com.king.battery.utils.APIID;
 import com.king.battery.utils.Tools;
 import com.king.batterytest.R;
 import com.qq.e.ads.banner.ADSize;
@@ -197,10 +198,8 @@ public class CoolActivity extends BaseActivity implements Handler.Callback {
         });
     }
     private void initBanner() {
-        //yyb
-        //this.bv = new BannerView(this, ADSize.BANNER, "1101189414", "4090829316242214");
-        // baidu
-        this.bv = new BannerView(this, ADSize.BANNER, "1106156011", "3070323555242789");
+
+        this.bv = new BannerView(this, ADSize.BANNER, APIID.ADAPP,APIID.banner);
         bv.setRefresh(30);
         bv.setADListener(new AbstractBannerADListener() {
 

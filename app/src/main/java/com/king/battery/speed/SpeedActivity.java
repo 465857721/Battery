@@ -16,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.king.battery.main.BaseActivity;
+import com.king.battery.utils.APIID;
 import com.king.batterytest.R;
 import com.qq.e.ads.banner.ADSize;
 import com.qq.e.ads.banner.AbstractBannerADListener;
@@ -111,7 +112,7 @@ public class SpeedActivity extends BaseActivity {
         //yyb
         // this.bv = new BannerView(this, ADSize.BANNER, "1101189414", "5040624571474334");
         //baidu
-        this.bv = new BannerView(this, ADSize.BANNER, "1106156011", "3070323555242789");
+        this.bv = new BannerView(this, ADSize.BANNER, APIID.ADAPP,APIID.banner);
 
         bv.setRefresh(30);
         bv.setADListener(new AbstractBannerADListener() {

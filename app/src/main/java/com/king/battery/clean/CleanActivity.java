@@ -27,6 +27,7 @@ import com.king.battery.clean.bean.TaskInfo;
 import com.king.battery.clean.event.CleanFinishEvent;
 import com.king.battery.home.HomeActivity;
 import com.king.battery.main.BaseActivity;
+import com.king.battery.utils.APIID;
 import com.king.battery.utils.Tools;
 import com.king.batterytest.R;
 import com.qq.e.ads.banner.ADSize;
@@ -58,10 +59,9 @@ public class CleanActivity extends BaseActivity implements Handler.Callback {
     CardView cardFinishTop;
     @Bind(R.id.card_finish_ad)
     CardView cardFinishAD;
-    @Bind(R.id.card_splash)
-    CardView cardSplash;
-    @Bind(R.id.iv_splash)
-    ImageView ivSplash;
+    @Bind(R.id.card_native)
+    CardView cardNative;
+
     private List<TaskInfo> list;
     private Handler mHandler;
     private Context mContext;
@@ -183,21 +183,15 @@ public class CleanActivity extends BaseActivity implements Handler.Callback {
         initBanner();
         bv.loadAD();
         EventBus.getDefault().post(new CleanFinishEvent());
-        cardSplash.setVisibility(View.VISIBLE);
-        Glide.with(this).load(R.drawable.preview).into(ivSplash);
-        cardSplash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Tools.goSplash(mContext);
-            }
-        });
+        cardNative.setVisibility(View.VISIBLE);
+
     }
 
     private void initBanner() {
         //yyb
-        // this.bv = new BannerView(this, ADSize.BANNER, "1101189414", "5040624571474334");
+         this.bv = new BannerView(this, ADSize.BANNER, APIID.ADAPP,APIID.banner);
         //baidu
-        this.bv = new BannerView(this, ADSize.BANNER, "1106156011", "3070323555242789");
+//        this.bv = new BannerView(this, ADSize.BANNER, "1106156011", "3070323555242789");
         bv.setRefresh(30);
         bv.setADListener(new AbstractBannerADListener() {
 
