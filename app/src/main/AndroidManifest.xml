@@ -94,10 +94,7 @@
             android:name="com.king.battery.clean.CleanActivity"
             android:exported="true"
             android:launchMode="singleTop"/>
-        <activity
-            android:name="com.king.battery.clean.CoolActivity"
-            android:exported="true"
-            android:launchMode="singleTop"/>
+
         <activity android:name="com.king.battery.charge.ChargeActivity"/>
         <activity android:name="com.king.battery.setting.SettingActivity"/>
         <activity android:name="com.king.battery.about.SupportActivity"/>
