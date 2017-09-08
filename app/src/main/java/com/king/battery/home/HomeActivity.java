@@ -17,7 +17,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,7 +27,6 @@ import com.king.battery.about.MyPhoneActivity;
 import com.king.battery.about.SupportActivity;
 import com.king.battery.charge.ChargeActivity;
 import com.king.battery.clean.CleanActivity;
-import com.king.battery.clean.CoolActivity;
 import com.king.battery.clean.TaskUtils;
 import com.king.battery.clean.bean.TaskInfo;
 import com.king.battery.clean.event.CleanFinishEvent;
@@ -47,8 +45,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -107,14 +103,14 @@ public class HomeActivity extends BaseActivity
             @Override
             public void run() {
                 ObjectAnimator anim = ObjectAnimator//
-                        .ofFloat(tvTips, "alpha", 1.0F,  0.0F)//
+                        .ofFloat(tvTips, "alpha", 1.0F, 0.0F)//
                         .setDuration(1000);//
                 anim.start();
 
             }
-        },6000);
+        }, 6000);
 
-}
+    }
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -246,7 +242,8 @@ public class HomeActivity extends BaseActivity
                 startActivity(gosaveCharge);
                 break;
             case R.id.ll_cool:
-                Intent gocoolCharge = new Intent(mContext, CoolActivity.class);
+                Intent gocoolCharge = new Intent(mContext, CleanActivity.class);
+                gocoolCharge.putExtra("type", 1);
                 startActivity(gocoolCharge);
                 break;
             case R.id.tv_goclean:

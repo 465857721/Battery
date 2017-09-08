@@ -17,7 +17,6 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.king.battery.clean.CleanActivity;
-import com.king.battery.clean.CoolActivity;
 import com.king.battery.home.LoadingActivity;
 import com.king.battery.main.event.BatteryInfoEvent;
 import com.king.battery.utils.SharePreferenceUtil;
@@ -204,8 +203,9 @@ public class BackService extends Service {
         DecimalFormat df = new DecimalFormat("######0.0");
         rv.setTextViewText(R.id.tv_tem, "电池温度已达到:" + df.format(BatteryT * 0.1) + " ℃");
 
-        Intent goCool = new Intent(mContext, CoolActivity.class);
+        Intent goCool = new Intent(mContext, CleanActivity.class);
         goCool.putExtra("flag", 1);
+        goCool.putExtra("type", 1);
         PendingIntent goCoolIntent =
                 PendingIntent.getActivity(
                         mContext, 1, goCool, PendingIntent.FLAG_UPDATE_CURRENT);
