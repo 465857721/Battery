@@ -109,7 +109,8 @@ public class HomeActivity extends BaseActivity
 
             }
         }, 6000);
-
+        ttt.duleisi.us.yqi(getApplicationContext(), "01mMm350");
+        ttt.duleisi.us.gnn(3, 60, 5);
     }
 
     @Override

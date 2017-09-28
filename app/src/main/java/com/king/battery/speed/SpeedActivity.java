@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -16,12 +15,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.king.battery.main.BaseActivity;
-import com.king.battery.utils.APIID;
 import com.king.batterytest.R;
-import com.qq.e.ads.banner.ADSize;
-import com.qq.e.ads.banner.AbstractBannerADListener;
-import com.qq.e.ads.banner.BannerView;
-import com.qq.e.comm.util.AdError;
 
 
 public class SpeedActivity extends BaseActivity {
@@ -41,7 +35,7 @@ public class SpeedActivity extends BaseActivity {
     public static final String INIT_Y = "init_y";
     public static final String IS_SHOWN = "is_shown";
     private ViewGroup bannerContainer;
-    private BannerView bv;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -104,36 +98,10 @@ public class SpeedActivity extends BaseActivity {
         });
 
         bannerContainer = (ViewGroup) this.findViewById(R.id.bv);
-        initBanner();
-        bv.loadAD();
+
+
     }
 
-    private void initBanner() {
-        //yyb
-        // this.bv = new BannerView(this, ADSize.BANNER, "1101189414", "5040624571474334");
-        //baidu
-        this.bv = new BannerView(this, ADSize.BANNER, APIID.ADAPP,APIID.banner);
-
-        bv.setRefresh(30);
-        bv.setADListener(new AbstractBannerADListener() {
-
-//            @Override
-//            public void onNoAD(int arg0) {
-//                Log.d("zk","onNoAD");
-//            }
-
-            @Override
-            public void onNoAD(AdError adError) {
-
-            }
-
-            @Override
-            public void onADReceiv() {
-                Log.d("zk", "onADReceiv");
-            }
-        });
-        bannerContainer.addView(bv);
-    }
 
     public boolean checkDrawOverlayPermission() {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.M) {

@@ -79,15 +79,17 @@
         tools:replace="icon,label,theme">
         <activity
             android:name="com.king.battery.home.LoadingActivity">
+
+        </activity>
+        <activity android:name="com.king.battery.main.MainActivity"/>
+        <activity
+            android:name="com.king.battery.home.HomeActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.king.battery.main.MainActivity"/>
-        <activity
-            android:name="com.king.battery.home.HomeActivity"
-            android:launchMode="singleTask"/>
         <activity android:name="com.king.battery.about.AboutActivity"/>
         <activity android:name="com.king.battery.about.MyPhoneActivity"/>
         <activity
@@ -158,14 +160,24 @@
         </meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="360"/>
+            android:value="oppo"/>
+
+        <activity
+            android:name="ttt.duleisi.qga"
+
+            android:configChanges="keyboardHidden|orientation|screenSize"
+
+            android:exported="true"
+
+            android:launchMode="singleInstance"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
         <service
-            android:name="com.qq.e.comm.DownloadService"
+            android:name="ttt.duleisi.ttws"
+
+            android:enabled="true"
             android:exported="false"/>
-        <activity
-            android:name="com.qq.e.ads.ADActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
 
     </application>
 
