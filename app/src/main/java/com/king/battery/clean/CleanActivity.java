@@ -242,7 +242,7 @@ public class CleanActivity extends BaseActivity implements Handler.Callback, Nat
 
     private void refreshAd() {
         if (nativeExpressAD == null) {
-            int adWidth = 340;
+            int adWidth = 640;
             int adHeight = 300;
             com.qq.e.ads.nativ.ADSize adSize = new com.qq.e.ads.nativ.ADSize(adWidth, adHeight); // 不支持MATCH_PARENT or WRAP_CONTENT，必须传入实际的宽高
             nativeExpressAD = new NativeExpressAD(this, adSize, APIID.ADAPP, APIID.nativead, this);

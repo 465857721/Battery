@@ -1,5 +1,6 @@
 package com.king.battery.speed;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -22,6 +23,8 @@ import com.qq.e.ads.banner.ADSize;
 import com.qq.e.ads.banner.AbstractBannerADListener;
 import com.qq.e.ads.banner.BannerView;
 import com.qq.e.comm.util.AdError;
+
+import java.lang.reflect.Field;
 
 
 public class SpeedActivity extends BaseActivity {
@@ -48,9 +51,9 @@ public class SpeedActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speed);
         //检查悬浮窗权限
-        if (checkDrawOverlayPermission()) {
+//        if (checkDrawOverlayPermission()) {
             init();
-        }
+//        }
     }
 
     private void init() {
@@ -93,13 +96,10 @@ public class SpeedActivity extends BaseActivity {
         findViewById(R.id.bt_gosetting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent localIntent = new Intent();
-                localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-                localIntent.setData(Uri.fromParts("package", getPackageName(), null));
+                applyCommonPermission(SpeedActivity.this);
 
-                startActivity(localIntent);
+
             }
         });
 
@@ -108,11 +108,42 @@ public class SpeedActivity extends BaseActivity {
         bv.loadAD();
     }
 
+    private void applyCommonPermission(Context context) {
+        if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.M)) {
+            Intent localIntent = new Intent();
+            localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+            localIntent.setData(Uri.fromParts("package", getPackageName(), null));
+
+            startActivity(localIntent);
+        } else {
+            try {
+                Class clazz = Settings.class;
+                Field field = clazz.getDeclaredField("ACTION_MANAGE_OVERLAY_PERMISSION");
+                Intent intent = new Intent(field.get(null).toString());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setData(Uri.parse("package:" + context.getPackageName()));
+                context.startActivity(intent);
+            } catch (Exception e) {
+
+                Intent localIntent = new Intent();
+                localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                localIntent.setData(Uri.fromParts("package", getPackageName(), null));
+
+                startActivity(localIntent);
+            }
+        }
+
+    }
+
     private void initBanner() {
         //yyb
         // this.bv = new BannerView(this, ADSize.BANNER, "1101189414", "5040624571474334");
         //baidu
-        this.bv = new BannerView(this, ADSize.BANNER, APIID.ADAPP,APIID.banner);
+        this.bv = new BannerView(this, ADSize.BANNER, APIID.ADAPP, APIID.banner);
 
         bv.setRefresh(30);
         bv.setADListener(new AbstractBannerADListener() {

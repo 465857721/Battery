@@ -54,6 +54,7 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>
     <android.support.v7.widget.CardView
+        android:layout_marginTop="10dp"
         android:id="@+id/card_finish_ad"
         android:visibility="gone"
         android:layout_width="match_parent"
@@ -72,6 +73,7 @@
 
     </android.support.v7.widget.CardView>
     <android.support.v7.widget.CardView
+        android:layout_marginTop="10dp"
         android:id="@+id/card_native"
         android:visibility="gone"
         android:layout_width="match_parent"
