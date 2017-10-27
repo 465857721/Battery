@@ -9,31 +9,31 @@ import android.widget.TextView;
 import com.king.batterytest.R;
 import com.king.battery.main.BaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class MyPhoneActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.tv_tem)
+    @BindView(R.id.tv_tem)
     TextView tvTem;
-    @Bind(R.id.tv_dianya)
+    @BindView(R.id.tv_dianya)
     TextView tvDianya;
-    @Bind(R.id.tv_state)
+    @BindView(R.id.tv_state)
     TextView tvState;
-    @Bind(R.id.tv_time_call)
+    @BindView(R.id.tv_time_call)
     TextView tvTimeCall;
-    @Bind(R.id.tv_time_3g)
+    @BindView(R.id.tv_time_3g)
     TextView tvTime3g;
-    @Bind(R.id.tv_time_wifi)
+    @BindView(R.id.tv_time_wifi)
     TextView tvTimeWifi;
-    @Bind(R.id.tv_time_vadio)
+    @BindView(R.id.tv_time_vadio)
     TextView tvTimeVadio;
-    @Bind(R.id.tv_time_game)
+    @BindView(R.id.tv_time_game)
     TextView tvTimeGame;
-    @Bind(R.id.tv_time_music)
+    @BindView(R.id.tv_time_music)
     TextView tvTimeMusic;
 
     @Override

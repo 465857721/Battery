@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.king.batterytest.R;
 import com.king.battery.clean.bean.TaskInfo;
+import com.king.batterytest.R;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -56,9 +56,9 @@ public class TaskAdapter extends RecyclerView.Adapter {
 
     class DeskViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_task_name)
+        @BindView(R.id.tv_task_name)
         TextView tvTaskName;
-        @Bind(R.id.iv_icon)
+        @BindView(R.id.iv_icon)
         ImageView ivIcon;
 
         public DeskViewHolder(View itemView) {

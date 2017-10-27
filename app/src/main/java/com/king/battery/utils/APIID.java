@@ -17,6 +17,6 @@ public interface APIID {
     String ADAPP = "1106156011";
     String loadingkey = "8030326585147706";
     String banner = "3070323555242789";
-    String chaping = "1000129344049991";
+    String chaping = "1010022515748814";
     String nativead = "9050923506476693";
 }

@@ -46,7 +46,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -54,21 +54,21 @@ import butterknife.OnClick;
 public class HomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, Handler.Callback {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.nav_view)
+    @BindView(R.id.nav_view)
     NavigationView navigationView;
-    @Bind(R.id.drawer_layout2)
+    @BindView(R.id.drawer_layout2)
     DrawerLayout drawer;
-    @Bind(R.id.tv_leave)
+    @BindView(R.id.tv_leave)
     TextView tvLeave;
-    @Bind(R.id.iv_clean_woring)
+    @BindView(R.id.iv_clean_woring)
     ImageView ivCleanWoring;
-    @Bind(R.id.tv_clean_state)
+    @BindView(R.id.tv_clean_state)
     TextView tvCleanState;
-    @Bind(R.id.tv_goclean)
+    @BindView(R.id.tv_goclean)
     TextView tvGoclean;
-    @Bind(R.id.tv_tips)
+    @BindView(R.id.tv_tips)
     TextView tvTips;
 
     private WaveHelper mWaveHelper;

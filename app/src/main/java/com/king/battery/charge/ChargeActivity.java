@@ -20,33 +20,33 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class ChargeActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.tv_charge)
+    @BindView(R.id.tv_charge)
     TextView tvCharge;
-    @Bind(R.id.tv_num)
+    @BindView(R.id.tv_num)
     TextView tvNum;
-    @Bind(R.id.iv_1)
+    @BindView(R.id.iv_1)
     ImageView iv1;
-    @Bind(R.id.tv_state1)
+    @BindView(R.id.tv_state1)
     TextView tvState1;
-    @Bind(R.id.iv_2)
+    @BindView(R.id.iv_2)
     ImageView iv2;
-    @Bind(R.id.tv_state2)
+    @BindView(R.id.tv_state2)
     TextView tvState2;
-    @Bind(R.id.iv_3)
+    @BindView(R.id.iv_3)
     ImageView iv3;
-    @Bind(R.id.tv_state3)
+    @BindView(R.id.tv_state3)
     TextView tvState3;
-    @Bind(R.id.iv_4)
+    @BindView(R.id.iv_4)
     ImageView iv4;
-    @Bind(R.id.tv_state4)
+    @BindView(R.id.tv_state4)
     TextView tvState4;
 
     private ObjectAnimator scaleYAnimB;

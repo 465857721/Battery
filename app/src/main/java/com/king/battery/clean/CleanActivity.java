@@ -42,29 +42,29 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class CleanActivity extends BaseActivity implements Handler.Callback, NativeExpressAD.NativeExpressADListener {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.rcl_task)
+    @BindView(R.id.rcl_task)
     RecyclerView rclTask;
-    @Bind(R.id.ll_bg)
+    @BindView(R.id.ll_bg)
     LinearLayout llBg;
-    @Bind(R.id.ll_progress)
+    @BindView(R.id.ll_progress)
     View googleProgress;
-    @Bind(R.id.card_finish_top)
+    @BindView(R.id.card_finish_top)
     CardView cardFinishTop;
-    @Bind(R.id.card_finish_ad)
+    @BindView(R.id.card_finish_ad)
     CardView cardFinishAD;
-    @Bind(R.id.card_native)
+    @BindView(R.id.card_native)
     CardView cardNative;
-    @Bind(R.id.tv_headtips)
+    @BindView(R.id.tv_headtips)
     TextView tvHeadtips;
-    @Bind(R.id.tv_tips)
+    @BindView(R.id.tv_tips)
     TextView tvTips;
 
     private List<TaskInfo> list;

@@ -21,18 +21,18 @@ import com.king.battery.speed.SpeedActivity;
 import com.king.battery.utils.Tools;
 import com.king.batterytest.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
 public class SettingActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.sw_notice)
+    @BindView(R.id.sw_notice)
     CheckBox swNotice;
-    @Bind(R.id.sw_tem)
+    @BindView(R.id.sw_tem)
     CheckBox swNoticeTem;
 
     private Context mContext;
@@ -87,7 +87,7 @@ public class SettingActivity extends BaseActivity {
         });
     }
 
-    @OnClick({R.id.rl_speed,R.id.rl_shortcut, R.id.rl_theme})
+    @OnClick({R.id.rl_speed, R.id.rl_shortcut, R.id.rl_theme})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_theme:
