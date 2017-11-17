@@ -1,12 +1,14 @@
 package com.king.battery.speed;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -106,6 +108,7 @@ public class SpeedActivity extends BaseActivity {
         bannerContainer = (ViewGroup) this.findViewById(R.id.bv);
         initBanner();
         bv.loadAD();
+        checkOverPermission();
     }
 
     private void applyCommonPermission(Context context) {
@@ -222,5 +225,24 @@ public class SpeedActivity extends BaseActivity {
         startService(new Intent(this, SpeedCalculationService.class)
                 .putExtra(CHANGED, true));
     }
+    private void checkOverPermission() {
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                new AlertDialog.Builder(this).setMessage("检测到你的设备默禁用了浮窗权限，为了保证你可以正常使用划词翻译功能，需要你授予浮窗权限。")
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                                        Uri.parse("package:" + getPackageName()));
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .show();
+            }
+        }
+
+    }
 }
