@@ -29,8 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                tools:text="电池温度达到:39℃"
-                android:textAppearance="@style/TextAppearance.StatusBar.EventContent"/>
+                tools:text="电池温度达到:39℃"/>
 
     </LinearLayout>
     <LinearLayout
@@ -51,8 +50,7 @@
             android:layout_marginTop="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="一键降温"
-            android:textAppearance="@style/TextAppearance.StatusBar.EventContent"/>
+            android:text="一键降温"/>
     </LinearLayout>
 
 </RelativeLayout>

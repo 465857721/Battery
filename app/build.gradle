@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.1'
     defaultConfig {
         applicationId "com.king.batterytestqihu3602"
         minSdkVersion 16
         targetSdkVersion 19
-        versionCode 554
-        versionName "5.5.4"
+        versionCode 560
+        versionName "5.6.0"
     }
 
     buildTypes {
@@ -21,18 +21,19 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.umeng.analytics:analytics:6.1.3'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.jaeger.statusbarutil:library:1.4.0'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:cardview-v7:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:design:27.0.2'
+    compile 'com.android.support:cardview-v7:27.0.2'
+    compile 'com.android.support:recyclerview-v7:27.0.2'
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.github.glomadrian:Grav:1.1'
     compile 'com.gelitenight.waveview:waveview:1.0.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.jpardogo.googleprogressbar:library:1.2.0'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.github.bumptech.glide:glide:4.4.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
 }

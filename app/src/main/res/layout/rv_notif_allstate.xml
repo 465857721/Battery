@@ -31,7 +31,7 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:text="电量:100"
-                android:textAppearance="@style/TextAppearance.StatusBar.EventContent"/>
+                />
 
             <TextView
                 android:id="@+id/tv_tem"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="温度:39℃"
-                android:textAppearance="@style/TextAppearance.StatusBar.EventContent"/>
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -53,16 +53,14 @@
                 android:id="@+id/tv_dianya"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:text="电压:39℃"
-                android:textAppearance="@style/TextAppearance.StatusBar.EventContent"/>
+                android:text="电压:39℃"/>
 
             <TextView
                 android:id="@+id/tv_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="状态:100"
-                android:textAppearance="@style/TextAppearance.StatusBar.EventContent"/>
+                android:text="状态:100"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -84,8 +82,7 @@
             android:layout_marginTop="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="一键省电"
-            android:textAppearance="@style/TextAppearance.StatusBar.EventContent"/>
+            android:text="一键省电"/>
     </LinearLayout>
 
 </RelativeLayout>
