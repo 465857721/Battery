@@ -321,6 +321,11 @@ public class CleanActivity extends BaseActivity implements Handler.Callback, Nat
     }
 
     @Override
+    public void onADCloseOverlay(NativeExpressADView nativeExpressADView) {
+        Log.i(TAG, "onADOpenOverlay");
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         // 使用完了每一个NativeExpressADView之后都要释放掉资源

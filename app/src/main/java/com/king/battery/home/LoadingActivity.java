@@ -2,8 +2,12 @@ package com.king.battery.home;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -14,6 +18,7 @@ import android.widget.TextView;
 
 import com.king.battery.main.BaseActivity;
 import com.king.battery.utils.APIID;
+import com.king.batterytest.BuildConfig;
 import com.king.batterytest.R;
 import com.qq.e.ads.splash.SplashAD;
 import com.qq.e.ads.splash.SplashADListener;
@@ -37,28 +42,47 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_loading);
 
-        container = (ViewGroup) this.findViewById(R.id.splash_container);
-        skipView = (TextView) findViewById(R.id.skip_view);
-        splashHolder = (ImageView) findViewById(R.id.splash_holder);
+        container = findViewById(R.id.splash_container);
+        skipView = findViewById(R.id.skip_view);
+        splashHolder = findViewById(R.id.splash_holder);
+
+
+        if (getAppMetaData(this, "UMENG_CHANNEL").equals("vivo")
+                || getAppMetaData(this, "UMENG_CHANNEL").equals("oppo")) {
+            if (System.currentTimeMillis() - Long.valueOf(BuildConfig.releaseTime) < 2 * 24 * 60 * 60 * 1000) {
+                next();
+                return;
+            }
+        }
         fetchSplashAD(this, container, skipView, APIID.ADAPP, APIID.loadingkey, this, 5000);
 
-
-//        Timer time = new Timer();
-//        TimerTask tk = new TimerTask() {
-//            @Override
-//            public void run() {
-//                // TODO Auto-generated method stub
-//                gotoActivity();
-//                finish();
-//            }
-//        };
-//        time.schedule(tk, timelong);
     }
 
     @Override
     protected void setStatusBar() {
 
     }
+    public static String getAppMetaData(Context ctx, String key) {
+        if (ctx == null || TextUtils.isEmpty(key)) {
+            return null;
+        }
+        String resultData = null;
+        try {
+            PackageManager packageManager = ctx.getPackageManager();
+            if (packageManager != null) {
+                ApplicationInfo applicationInfo = packageManager.getApplicationInfo(ctx.getPackageName(), PackageManager.GET_META_DATA);
+                if (applicationInfo != null) {
+                    if (applicationInfo.metaData != null) {
+                        resultData = applicationInfo.metaData.getString(key);
+                    }
+                }
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return resultData;
+    }
+
 
     private void gotoActivity() {
         Intent go;
