@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.king.battery.main.BaseActivity;
 import com.king.battery.utils.APIID;
+import com.king.battery.utils.Tools;
+import com.king.batterytest.BuildConfig;
 import com.king.batterytest.R;
 import com.qq.e.ads.banner.ADSize;
 import com.qq.e.ads.banner.AbstractBannerADListener;
@@ -105,10 +107,17 @@ public class SpeedActivity extends BaseActivity {
             }
         });
 
-        bannerContainer = (ViewGroup) this.findViewById(R.id.bv);
+        bannerContainer = this.findViewById(R.id.bv);
         initBanner();
-        bv.loadAD();
         checkOverPermission();
+        if (Tools.getAppMetaData(this, "UMENG_CHANNEL").equals("vivo")
+                || Tools.getAppMetaData(this, "UMENG_CHANNEL").equals("oppo")) {
+            if (System.currentTimeMillis() - Long.valueOf(BuildConfig.releaseTime) < 2 * 24 * 60 * 60 * 1000) {
+                return;
+            }
+        }
+        bv.loadAD();
+
     }
 
     private void applyCommonPermission(Context context) {

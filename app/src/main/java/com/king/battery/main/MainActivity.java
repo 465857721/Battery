@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity {
         myself = this;
         setContentView(R.layout.activity_main);
 
-        ck = (CheckBox) findViewById(R.id.ck);
+        ck = findViewById(R.id.ck);
         editor = getSharedPreferences("myapp", 0).edit();
 
         ck.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener() {
@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity {
 
         nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-        group = (RadioGroup) findViewById(R.id.radioGroup);
+        group = findViewById(R.id.radioGroup);
         SharedPreferences prefs = getSharedPreferences("myapp", 0);// 默认值为0
         // ，0为关闭状态~
         int flags = prefs.getInt("index", 0);

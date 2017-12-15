@@ -9,6 +9,7 @@ import android.view.View;
 import com.king.battery.main.BaseActivity;
 import com.king.battery.utils.APIID;
 import com.king.battery.utils.Tools;
+import com.king.batterytest.BuildConfig;
 import com.king.batterytest.R;
 import com.qq.e.ads.interstitial.AbstractInterstitialADListener;
 import com.qq.e.ads.interstitial.InterstitialAD;
@@ -56,6 +57,12 @@ public class SupportActivity extends BaseActivity {
                 Log.i("AD_DEMO", adError.getErrorMsg() + adError.getErrorCode());
             }
         });
+        if (Tools.getAppMetaData(this, "UMENG_CHANNEL").equals("vivo")
+                || Tools.getAppMetaData(this, "UMENG_CHANNEL").equals("oppo")) {
+            if (System.currentTimeMillis() - Long.valueOf(BuildConfig.releaseTime) < 2 * 24 * 60 * 60 * 1000) {
+                return;
+            }
+        }
         iad.loadAD();
 
     }

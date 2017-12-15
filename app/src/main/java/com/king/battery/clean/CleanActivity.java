@@ -27,6 +27,8 @@ import com.king.battery.clean.event.CleanFinishEvent;
 import com.king.battery.home.HomeActivity;
 import com.king.battery.main.BaseActivity;
 import com.king.battery.utils.APIID;
+import com.king.battery.utils.Tools;
+import com.king.batterytest.BuildConfig;
 import com.king.batterytest.R;
 import com.qq.e.ads.banner.ADSize;
 import com.qq.e.ads.banner.AbstractBannerADListener;
@@ -205,8 +207,15 @@ public class CleanActivity extends BaseActivity implements Handler.Callback, Nat
                 .setDuration(1000)//
                 .start();
         initBanner();
-        bv.loadAD();
         EventBus.getDefault().post(new CleanFinishEvent());
+        if (Tools.getAppMetaData(this, "UMENG_CHANNEL").equals("vivo")
+                || Tools.getAppMetaData(this, "UMENG_CHANNEL").equals("oppo")) {
+            if (System.currentTimeMillis() - Long.valueOf(BuildConfig.releaseTime) < 2 * 24 * 60 * 60 * 1000) {
+                return;
+            }
+        }
+
+        bv.loadAD();
         cardNative.setVisibility(View.VISIBLE);
         refreshAd();
 

@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.king.battery.main.BaseActivity;
 import com.king.battery.utils.APIID;
+import com.king.battery.utils.Tools;
 import com.king.batterytest.BuildConfig;
 import com.king.batterytest.R;
 import com.qq.e.ads.splash.SplashAD;
@@ -47,8 +48,8 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
         splashHolder = findViewById(R.id.splash_holder);
 
 
-        if (getAppMetaData(this, "UMENG_CHANNEL").equals("vivo")
-                || getAppMetaData(this, "UMENG_CHANNEL").equals("oppo")) {
+        if (Tools.getAppMetaData(this, "UMENG_CHANNEL").equals("vivo")
+                || Tools.getAppMetaData(this, "UMENG_CHANNEL").equals("oppo")) {
             if (System.currentTimeMillis() - Long.valueOf(BuildConfig.releaseTime) < 2 * 24 * 60 * 60 * 1000) {
                 next();
                 return;
@@ -62,26 +63,7 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
     protected void setStatusBar() {
 
     }
-    public static String getAppMetaData(Context ctx, String key) {
-        if (ctx == null || TextUtils.isEmpty(key)) {
-            return null;
-        }
-        String resultData = null;
-        try {
-            PackageManager packageManager = ctx.getPackageManager();
-            if (packageManager != null) {
-                ApplicationInfo applicationInfo = packageManager.getApplicationInfo(ctx.getPackageName(), PackageManager.GET_META_DATA);
-                if (applicationInfo != null) {
-                    if (applicationInfo.metaData != null) {
-                        resultData = applicationInfo.metaData.getString(key);
-                    }
-                }
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return resultData;
-    }
+
 
 
     private void gotoActivity() {
