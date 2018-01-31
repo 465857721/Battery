@@ -16,7 +16,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -103,7 +102,7 @@ public class CleanActivity extends BaseActivity implements Handler.Callback, Nat
                 mHandler.sendEmptyMessage(0);
             }
         }).start();
-        bannerContainer = (ViewGroup) this.findViewById(R.id.bv);
+        bannerContainer = this.findViewById(R.id.bv);
 
 
     }
@@ -208,9 +207,12 @@ public class CleanActivity extends BaseActivity implements Handler.Callback, Nat
                 .start();
         initBanner();
         EventBus.getDefault().post(new CleanFinishEvent());
-        if (Tools.getAppMetaData(this, "UMENG_CHANNEL").equals("vivo")
-                || Tools.getAppMetaData(this, "UMENG_CHANNEL").equals("oppo")) {
-            if (System.currentTimeMillis() - Long.valueOf(BuildConfig.releaseTime) < 2 * 24 * 60 * 60 * 1000) {
+        String[] cArray = getResources().getStringArray(R.array.channel);
+        for (String c : cArray) {
+            String channel = Tools.getAppMetaData(this, "UMENG_CHANNEL");
+            if (c.equals(channel)
+                    && (System.currentTimeMillis() - Long.valueOf(BuildConfig.releaseTime) < 2 * 24 * 60 * 60 * 1000)) {
+
                 return;
             }
         }
@@ -251,10 +253,9 @@ public class CleanActivity extends BaseActivity implements Handler.Callback, Nat
 
     private void refreshAd() {
         if (nativeExpressAD == null) {
-            int adWidth = 640;
-            int adHeight = 300;
-            com.qq.e.ads.nativ.ADSize adSize = new com.qq.e.ads.nativ.ADSize(adWidth, adHeight); // 不支持MATCH_PARENT or WRAP_CONTENT，必须传入实际的宽高
-            nativeExpressAD = new NativeExpressAD(this, adSize, APIID.ADAPP, APIID.nativead, this);
+            nativeExpressAD = new NativeExpressAD(this, new com.qq.e.ads.nativ.ADSize(com.qq.e.ads.nativ.ADSize.FULL_WIDTH,
+                    com.qq.e.ads.nativ.ADSize.AUTO_HEIGHT), APIID.ADAPP, APIID.nativead, this); // 传入Activity
+
         }
         nativeExpressAD.loadAD(1);
     }

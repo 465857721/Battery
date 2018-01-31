@@ -48,9 +48,11 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
         splashHolder = findViewById(R.id.splash_holder);
 
 
-        if (Tools.getAppMetaData(this, "UMENG_CHANNEL").equals("vivo")
-                || Tools.getAppMetaData(this, "UMENG_CHANNEL").equals("oppo")) {
-            if (System.currentTimeMillis() - Long.valueOf(BuildConfig.releaseTime) < 2 * 24 * 60 * 60 * 1000) {
+        String[] cArray = getResources().getStringArray(R.array.channel);
+        for (String c : cArray) {
+            String channel = Tools.getAppMetaData(this, "UMENG_CHANNEL");
+            if (c.equals(channel)
+                    && (System.currentTimeMillis() - Long.valueOf(BuildConfig.releaseTime) < 2 * 24 * 60 * 60 * 1000)) {
                 next();
                 return;
             }
