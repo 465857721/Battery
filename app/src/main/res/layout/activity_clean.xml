@@ -1,13 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:gpb="http://schemas.android.com/apk/res-auto"
-              android:id="@+id/ll_bg"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/clean_bg_red"
-              android:fitsSystemWindows="true"
-              android:gravity="center_vertical"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:gpb="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/clean_bg_red"
+    android:fitsSystemWindows="true"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
 
 
     <android.support.v7.widget.Toolbar
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/none_color"
-        android:theme="@style/AppBarTheme"/>
+        android:theme="@style/AppBarTheme" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_finish_top"
@@ -41,7 +41,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/medal"/>
+                android:src="@drawable/medal" />
 
             <TextView
                 android:id="@+id/tv_headtips"
@@ -50,44 +50,46 @@
                 android:paddingLeft="10dp"
                 android:text="恭喜您，已达到最佳状态"
                 android:textColor="#2d2d2d"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
+
     <android.support.v7.widget.CardView
-        android:layout_marginTop="10dp"
         android:id="@+id/card_finish_ad"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
+        android:visibility="gone"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="5dp">
+
         <FrameLayout
             android:id="@+id/bv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true" >
-        </FrameLayout>
+            android:layout_alignParentTop="true"/>
 
     </android.support.v7.widget.CardView>
+
     <android.support.v7.widget.CardView
-        android:layout_marginTop="10dp"
         android:id="@+id/card_native"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
-        android:layout_gravity="center"
+        android:visibility="gone"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="5dp">
         <!--<include-->
-            <!--android:id="@+id/nativeADContainer"-->
-           <!---->
-            <!--layout="@layout/nativelistitem" />-->
+        <!--android:id="@+id/nativeADContainer"-->
+        <!---->
+        <!--layout="@layout/nativelistitem" />-->
     </android.support.v7.widget.CardView>
 
     <LinearLayout
@@ -102,7 +104,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            gpb:type="nexus_rotation_cross"/>
+            gpb:type="nexus_rotation_cross" />
 
         <TextView
             android:id="@+id/tv_tips"
@@ -113,13 +115,13 @@
             android:gravity="center"
             android:text="努力优化中，请稍等..."
             android:textColor="@color/white"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
     </LinearLayout>
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rcl_task"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

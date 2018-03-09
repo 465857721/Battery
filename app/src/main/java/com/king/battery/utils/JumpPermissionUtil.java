@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.v7.appcompat.BuildConfig;
 import android.util.Log;
+
+import com.king.batterytest.BuildConfig;
+
 /**
  * Created by zhoukang on 2017/8/23.
  */
@@ -58,6 +60,7 @@ public class JumpPermissionUtil {
             default:
                 ApplicationInfo(activity);
                 Log.e("goToSetting", "目前暂不支持此系统");
+
                 break;
         }
     }
