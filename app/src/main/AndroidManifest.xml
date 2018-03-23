@@ -158,6 +158,7 @@
         <activity
             android:name="com.qq.e.ads.ADActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.king.battery.charge.OutChargActivity" android:launchMode="singleInstance"/>
 
     </application>
 

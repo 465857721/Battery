@@ -3,7 +3,6 @@ package com.king.battery.home;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,7 +19,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.gelitenight.waveview.library.WaveView;
 import com.jaeger.library.StatusBarUtil;
 import com.king.battery.about.AboutActivity;
 import com.king.battery.about.MyPhoneActivity;
@@ -36,7 +34,6 @@ import com.king.battery.service.BackService;
 import com.king.battery.setting.SettingActivity;
 import com.king.battery.speed.SpeedActivity;
 import com.king.battery.utils.Tools;
-import com.king.battery.utils.WaveHelper;
 import com.king.batterytest.R;
 
 import org.greenrobot.eventbus.EventBus;
@@ -49,6 +46,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.itangqi.waveloadingview.WaveLoadingView;
 
 
 public class HomeActivity extends BaseActivity
@@ -60,8 +58,7 @@ public class HomeActivity extends BaseActivity
     NavigationView navigationView;
     @BindView(R.id.drawer_layout2)
     DrawerLayout drawer;
-    @BindView(R.id.tv_leave)
-    TextView tvLeave;
+
     @BindView(R.id.iv_clean_woring)
     ImageView ivCleanWoring;
     @BindView(R.id.tv_clean_state)
@@ -70,11 +67,10 @@ public class HomeActivity extends BaseActivity
     TextView tvGoclean;
     @BindView(R.id.tv_tips)
     TextView tvTips;
+    @BindView(R.id.waveLoadingView)
+    WaveLoadingView waveLoadingView;
 
-    private WaveHelper mWaveHelper;
-    private WaveView waveView;
-    private int mBorderColor = Color.parseColor("#44FFFFFF");
-    private int mBorderWidth = 30;
+
     private Context mContext;
     private List<TaskInfo> list = new ArrayList<>();
     private Handler mHandler;
@@ -89,7 +85,7 @@ public class HomeActivity extends BaseActivity
         startService();
 
         intiView();
-        mWaveHelper.start(spu.getNum() / 100);
+
         mHandler = new Handler(this);
         new Thread(new Runnable() {
             @Override
@@ -132,7 +128,7 @@ public class HomeActivity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout2);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -180,15 +176,10 @@ public class HomeActivity extends BaseActivity
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        TextView tvPhoneName = (TextView) navigationView.getHeaderView(0).findViewById(R.id.tv_phone_name);
+        TextView tvPhoneName = navigationView.getHeaderView(0).findViewById(R.id.tv_phone_name);
         tvPhoneName.setText(Build.MODEL);
 
-        //电量
-        waveView = (WaveView) findViewById(R.id.wave);
-        waveView.setBorder(mBorderWidth, mBorderColor);
 
-        mWaveHelper = new WaveHelper(waveView);
-        waveView.setShapeType(WaveView.ShapeType.CIRCLE);
 
         // nva 头部点击
         navigationView.getHeaderView(0).findViewById(R.id.ll_nav_head).setOnClickListener(new View.OnClickListener() {
@@ -205,7 +196,7 @@ public class HomeActivity extends BaseActivity
     @Override
     protected void onPause() {
         super.onPause();
-        mWaveHelper.cancel();
+
     }
 
     @Override
@@ -216,14 +207,13 @@ public class HomeActivity extends BaseActivity
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(BatteryInfoEvent event) {
-        mWaveHelper.setLevelRatio(event.getNum() / 100f);
-        tvLeave.setText(event.getNum() + "%");
+        waveLoadingView.setProgressValue(event.getNum());
+        waveLoadingView.setCenterTitle(event.getNum()+"%");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 
     @OnClick({R.id.ll_wifi, R.id.ll_save, R.id.ll_cool, R.id.ll_charge, R.id.tv_goclean})

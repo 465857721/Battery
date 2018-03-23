@@ -16,6 +16,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.king.battery.charge.OutChargActivity;
 import com.king.battery.clean.CleanActivity;
 import com.king.battery.home.LoadingActivity;
 import com.king.battery.main.event.BatteryInfoEvent;
@@ -46,6 +47,7 @@ public class BackService extends Service {
         // 定义电池电量更新广播的过滤器,只接受带有ACTION_BATTERRY_CHANGED事件的Intent
         IntentFilter batteryChangedReceiverFilter = new IntentFilter();
         batteryChangedReceiverFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
+//        batteryChangedReceiverFilter.addAction(Intent.ACTION_POWER_CONNECTED);
         // 向系统注册batteryChangedReceiver接收器，本接收器的实现见代码字段处
         registerReceiver(batteryChangedReceiver, batteryChangedReceiverFilter);
         // 实例化Notification通知的管理器，即字段notification manager
@@ -131,16 +133,22 @@ public class BackService extends Service {
         Log.d("zk action = ", intent.getAction().toString());
         switch (intent.getIntExtra("status", BatteryManager.BATTERY_STATUS_UNKNOWN)) {
             case BatteryManager.BATTERY_STATUS_CHARGING:
-                BatteryStatus = "充电状态";
+                BatteryStatus = "快速充电中";
+//                if (System.currentTimeMillis() - spu.getOutChareTime() > 60 * 60 * 1000) {
+                    Intent outCharge = new Intent(mContext, OutChargActivity.class);
+                    outCharge.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(outCharge);
+                    spu.setOutChareTime(System.currentTimeMillis());
+//                }
                 break;
             case BatteryManager.BATTERY_STATUS_DISCHARGING:
-                BatteryStatus = "放电状态";
+                BatteryStatus = "正常使用中";
                 break;
             case BatteryManager.BATTERY_STATUS_NOT_CHARGING:
                 BatteryStatus = "未充电";
                 break;
             case BatteryManager.BATTERY_STATUS_FULL:
-                BatteryStatus = "充满电";
+                BatteryStatus = "充电已完成";
                 break;
             case BatteryManager.BATTERY_STATUS_UNKNOWN:
                 BatteryStatus = "未知道状态";

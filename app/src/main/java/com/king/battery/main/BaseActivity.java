@@ -37,8 +37,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void setStatusBar() {
-
-
         StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.colorPrimary));
     }
 

@@ -60,11 +60,22 @@ public class SharePreferenceUtil {
     public boolean getIsNoticeTem() {
         return sp.getBoolean("notice_tem", true);
     }
-    public void setTemLongTime(Long l){
-        editor.putLong("temtime",l);
+
+    public void setTemLongTime(Long l) {
+        editor.putLong("temtime", l);
         editor.commit();
     }
-    public Long getTemLongTime(){
-        return sp.getLong("temtime",0);
+
+    public Long getTemLongTime() {
+        return sp.getLong("temtime", 0);
+    }
+
+    public void setOutChareTime(Long l) {
+        editor.putLong("outchargetime", l);
+        editor.commit();
+    }
+
+    public Long getOutChareTime() {
+        return sp.getLong("outchargetime", 0);
     }
 }
