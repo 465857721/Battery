@@ -11,6 +11,7 @@ public interface APIID {
 //    String banner = "5040624571474334";
 //    String chaping = "1000129344049991";
 //    String nativead = "1020138092031047";
+//    String nativeadout = "1030632253629973";
 
 
     //baidu
@@ -19,4 +20,5 @@ public interface APIID {
     String banner = "3070323555242789";
     String chaping = "1010022515748814";
     String nativead = "3020333002630540";
+    String nativeadout = "9030639203924954";
 }

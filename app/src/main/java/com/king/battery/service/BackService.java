@@ -133,13 +133,21 @@ public class BackService extends Service {
         Log.d("zk action = ", intent.getAction().toString());
         switch (intent.getIntExtra("status", BatteryManager.BATTERY_STATUS_UNKNOWN)) {
             case BatteryManager.BATTERY_STATUS_CHARGING:
-                BatteryStatus = "快速充电中";
-//                if (System.currentTimeMillis() - spu.getOutChareTime() > 60 * 60 * 1000) {
-                    Intent outCharge = new Intent(mContext, OutChargActivity.class);
-                    outCharge.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    mContext.startActivity(outCharge);
-                    spu.setOutChareTime(System.currentTimeMillis());
-//                }
+                if (num > 95) {
+                    BatteryStatus = "涓流充电中";
+                } else {
+                    BatteryStatus = "快速充电中";
+                }
+                if (Tools.isBackground(context) && spu.getOutCharge()) {
+                    if (System.currentTimeMillis() - spu.getOutChareTime() > 60 * 60 * 1000) {
+                        Intent outCharge = new Intent(mContext, OutChargActivity.class);
+                        outCharge.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(outCharge);
+                        spu.setOutChareTime(System.currentTimeMillis());
+                    }
+
+                }
+
                 break;
             case BatteryManager.BATTERY_STATUS_DISCHARGING:
                 BatteryStatus = "正常使用中";

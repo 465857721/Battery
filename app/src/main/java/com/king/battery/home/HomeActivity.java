@@ -24,6 +24,7 @@ import com.king.battery.about.AboutActivity;
 import com.king.battery.about.MyPhoneActivity;
 import com.king.battery.about.SupportActivity;
 import com.king.battery.charge.ChargeActivity;
+import com.king.battery.charge.OutChargActivity;
 import com.king.battery.clean.CleanActivity;
 import com.king.battery.clean.TaskUtils;
 import com.king.battery.clean.bean.TaskInfo;
@@ -220,7 +221,7 @@ public class HomeActivity extends BaseActivity
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_charge:
-                Intent goCharge = new Intent(mContext, ChargeActivity.class);
+                Intent goCharge = new Intent(mContext, OutChargActivity.class);
                 startActivity(goCharge);
                 break;
             case R.id.ll_wifi:

@@ -61,6 +61,15 @@ public class SharePreferenceUtil {
         return sp.getBoolean("notice_tem", true);
     }
 
+    public void setOutCharge(boolean is) {
+        editor.putBoolean("notice_out", is);
+        editor.commit();
+    }
+
+    public boolean getOutCharge() {
+        return sp.getBoolean("notice_out", true);
+    }
+
     public void setTemLongTime(Long l) {
         editor.putLong("temtime", l);
         editor.commit();

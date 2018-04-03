@@ -34,6 +34,8 @@ public class SettingActivity extends BaseActivity {
     CheckBox swNotice;
     @BindView(R.id.sw_tem)
     CheckBox swNoticeTem;
+    @BindView(R.id.sw_automate)
+    CheckBox swAutomate;
 
     private Context mContext;
 
@@ -49,6 +51,7 @@ public class SettingActivity extends BaseActivity {
         Log.d("zk", "a" + c);
         swNotice.setChecked(c);
         swNoticeTem.setChecked(spu.getIsNoticeTem());
+        swAutomate.setChecked(spu.getOutCharge());
 
     }
 
@@ -82,7 +85,12 @@ public class SettingActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 spu.setNoticTem(isChecked);
-
+            }
+        });
+        swAutomate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                spu.setOutCharge(isChecked);
             }
         });
     }
