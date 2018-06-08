@@ -52,7 +52,7 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
         for (String c : cArray) {
             String channel = Tools.getAppMetaData(this, "UMENG_CHANNEL");
             if (c.equals(channel)
-                    && (System.currentTimeMillis() - Long.valueOf(BuildConfig.releaseTime) < 2 * 24 * 60 * 60 * 1000)) {
+                    && (System.currentTimeMillis() - Long.valueOf(BuildConfig.releaseTime) < 18 * 60 * 60 * 1000)) {
                 next();
                 return;
             }

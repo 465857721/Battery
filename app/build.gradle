@@ -4,11 +4,11 @@ android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "com.king.batterytestqihu3602"
+        applicationId "com.king.batterytest"
         minSdkVersion 18
         targetSdkVersion 19
-        versionCode 590
-        versionName "5.9.0"
+        versionCode 591
+        versionName "5.9.1"
         buildConfigField("String", "releaseTime", "\"" + System.currentTimeMillis() + "\"")
     }
 
@@ -25,23 +25,23 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:27.1.0'
-    compile 'com.android.support:support-v4:27.1.0'
-    compile 'com.umeng.analytics:analytics:6.1.3'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.jaeger.statusbarutil:library:1.4.0'
-    compile 'com.android.support:design:27.1.0'
-    compile 'com.android.support:cardview-v7:27.1.0'
-    compile 'com.android.support:recyclerview-v7:27.1.0'
-    compile 'com.jakewharton:butterknife:8.8.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.umeng.analytics:analytics:6.1.3'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    compile 'com.github.glomadrian:Grav:1.1'
-    compile 'org.greenrobot:eventbus:3.0.0'
-    compile 'com.jpardogo.googleprogressbar:library:1.2.0'
-    implementation 'com.github.bumptech.glide:glide:4.6.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
-    compile 'com.jaredrummler:android-processes:1.1.1'
-    compile 'me.itangqi.waveloadingview:library:0.3.5'
+    implementation 'com.github.glomadrian:Grav:1.1'
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation 'com.jpardogo.googleprogressbar:library:1.2.0'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    implementation 'com.jaredrummler:android-processes:1.1.1'
+    implementation 'me.itangqi.waveloadingview:library:0.3.5'
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 }
