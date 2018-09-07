@@ -7,8 +7,8 @@ android {
         applicationId "com.king.batterytest"
         minSdkVersion 18
         targetSdkVersion 19
-        versionCode 591
-        versionName "5.9.1"
+        versionCode 601
+        versionName "6.0.1"
         buildConfigField("String", "releaseTime", "\"" + System.currentTimeMillis() + "\"")
     }
 
@@ -29,7 +29,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.umeng.analytics:analytics:6.1.3'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:cardview-v7:27.1.1'

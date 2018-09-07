@@ -3,6 +3,7 @@ package com.king.battery.speed;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.net.TrafficStats;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -105,7 +106,13 @@ public class WindowUtil {
         params.x = initX;
         params.y = initY;
         params.width = params.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        params.type = WindowManager.LayoutParams.TYPE_PHONE;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            params.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        }else {
+            params.type = WindowManager.LayoutParams.TYPE_PHONE;
+        }
+
+
         params.gravity = Gravity.LEFT | Gravity.TOP;
         params.format = PixelFormat.RGBA_8888;
         params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;

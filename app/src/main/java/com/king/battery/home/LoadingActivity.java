@@ -147,6 +147,11 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
         skipView.setText(String.format(SKIP_TEXT, Math.round(millisUntilFinished / 1000f)));
     }
 
+    @Override
+    public void onADExposure() {
+
+    }
+
     //防止用户返回键退出APP
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
