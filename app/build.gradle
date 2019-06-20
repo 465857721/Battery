@@ -7,8 +7,8 @@ android {
         applicationId "com.king.batterytest"
         minSdkVersion 18
         targetSdkVersion 26
-        versionCode 612
-        versionName "6.1.2"
+        versionCode 620
+        versionName "6.2.0"
         buildConfigField("String", "releaseTime", "\"" + System.currentTimeMillis() + "\"")
     }
 
