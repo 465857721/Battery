@@ -3,15 +3,23 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.king.batterytest"
+        applicationId "com.king.batterytestqihu3602"
+//        applicationId "com.king.batterytest"
         minSdkVersion 18
-        targetSdkVersion 21
-        versionCode 610
-        versionName "6.1.0"
+        targetSdkVersion 26
+        versionCode 612
+        versionName "6.1.2"
         buildConfigField("String", "releaseTime", "\"" + System.currentTimeMillis() + "\"")
     }
 
-
+    android {
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError true
+        }
+    }
 
 
 
