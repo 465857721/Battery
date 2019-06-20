@@ -1,29 +1,30 @@
 package com.king.battery.home;
 
 
+import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.king.battery.main.BaseActivity;
 import com.king.battery.utils.APIID;
-import com.king.battery.utils.Tools;
-import com.king.batterytest.BuildConfig;
 import com.king.batterytest.R;
 import com.qq.e.ads.splash.SplashAD;
 import com.qq.e.ads.splash.SplashADListener;
 import com.qq.e.comm.util.AdError;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.runtime.Permission;
 
 
 public class LoadingActivity extends BaseActivity implements SplashADListener {
@@ -36,7 +37,6 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -48,24 +48,77 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
         splashHolder = findViewById(R.id.splash_holder);
 
 
-        String[] cArray = getResources().getStringArray(R.array.channel);
-        for (String c : cArray) {
-            String channel = Tools.getAppMetaData(this, "UMENG_CHANNEL");
-            if (c.equals(channel)
-                    && (System.currentTimeMillis() - Long.valueOf(BuildConfig.releaseTime) < 18 * 60 * 60 * 1000)) {
-                next();
-                return;
-            }
-        }
-        fetchSplashAD(this, container, skipView, APIID.ADAPP, APIID.loadingkey, this, 5000);
+//        String[] cArray = getResources().getStringArray(R.array.channel);
+//        for (String c : cArray) {
+//            String channel = Tools.getAppMetaData(this, "UMENG_CHANNEL");
+//            if (c.equals(channel)
+//                    && (System.currentTimeMillis() - Long.valueOf(BuildConfig.releaseTime) < 18 * 60 * 60 * 1000)) {
+//                next();
+//                return;
+//            }
+//        }
 
+        if (Build.VERSION.SDK_INT >= 23) {
+            checkPermistion();
+        } else {
+            initAD();
+        }
+
+
+    }
+
+    private void initAD() {
+        fetchSplashAD(this, container, skipView, APIID.ADAPP, APIID.loadingkey, this, 5000);
+    }
+
+    private void checkPermistion() {
+        AndPermission.with(this)
+                .runtime()
+                .permission(Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.ACCESS_FINE_LOCATION)
+                .onGranted(permissions -> {
+                    initAD();
+                })
+                .onDenied(permissions -> {
+                    showPerDialog();
+                })
+                .start();
+    }
+
+    private void showPerDialog() {
+        LayoutInflater inflaterDl = LayoutInflater.from(this);
+        LinearLayout layout = (LinearLayout) inflaterDl.inflate(
+                R.layout.dialog_tips_p, null);
+        final AlertDialog tel_dialog = new AlertDialog.Builder(this).create();
+
+        tel_dialog.setCanceledOnTouchOutside(false);
+        tel_dialog.setCancelable(false);
+        tel_dialog.show();
+        tel_dialog.getWindow().setContentView(layout);
+        TextView btnCancel = layout.findViewById(R.id.dialog_btn_cancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tel_dialog.dismiss();
+                finish();
+            }
+        });
+
+        TextView btnOK = layout.findViewById(R.id.dialog_btn_ok);
+        btnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tel_dialog.dismiss();
+                checkPermistion();
+            }
+        });
     }
 
     @Override
     protected void setStatusBar() {
 
     }
-
 
 
     private void gotoActivity() {
